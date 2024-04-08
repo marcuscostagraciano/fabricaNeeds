@@ -1,4 +1,4 @@
-# _Homework Reminder_: uma solução para tarefas em múltiplas plataforma
+# _FabricaNeeds_: gestão de demandas da cozinha da Fábrica de Software
 
 [![pt-BR](https://img.shields.io/badge/lang-pt--BR-green.svg)](README.md)
 [![en](https://img.shields.io/badge/lang-en-red.svg)](README.en-US.md)
@@ -20,7 +20,7 @@ Este projeto tem como objetivo abranger e revisar o conhecimento sobre Django, G
 
 ### Propósito
 
-Com a utilização de várias plataformas para a aplicação de tarefas e trabalhos, o esquecimento das datas de entrega é algo plausível (e normal). Este pequeno sistema tem o propósito de servir como um _hub_ para o registro das datas de apresentações, entregas e provas.
+WIP
 
 ### Detalhes do Sistema
 

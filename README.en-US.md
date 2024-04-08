@@ -1,4 +1,4 @@
-# _Homework Reminder_: a solution for multi-platform homeworks
+# _FabricaNeeds_: managing demands from the _Fábrica de Software_'s kitchen
 
 [![pt-BR](https://img.shields.io/badge/lang-pt--BR-green.svg)](README.md)
 [![en](https://img.shields.io/badge/lang-en-red.svg)](README.en-US.md)
@@ -20,7 +20,7 @@ This project aims to cover and review knowledge about Django, Git and Vue. It sh
 
 ### Purpose
 
-With the use of various platforms for the application of tasks and assignments, forgetting delivery dates is plausible (and normal). The purpose of this little system is to serve as a _hub_ for recording the dates of presentations, assignments and exams.
+WIP
 
 ### System details
 
