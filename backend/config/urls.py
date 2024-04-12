@@ -6,7 +6,7 @@ from rest_framework.routers import DefaultRouter
 from FabricaNeeds.views import ItemViewSet
 
 router = DefaultRouter()
-router.register(r'itens', ItemViewSet)
+router.register(r'items', ItemViewSet)
 
 urlpatterns = [
     path('admin/', admin.site.urls),

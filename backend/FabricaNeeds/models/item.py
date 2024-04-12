@@ -2,7 +2,7 @@ from django.db import models
 
 class Item(models.Model):
     name: str = models.CharField(max_length=16, blank=False)
-    ativo: bool = models.BooleanField(default=True)
+    active: bool = models.BooleanField(default=True)
 
     def __str__(self) -> str:
         return self.name
