@@ -6,4 +6,12 @@ from FabricaNeeds.models import Item
 class ItemSerializer(ModelSerializer):
     class Meta:
         model = Item
-        fields = ('name', 'ativo',)
+        fields = ('id', 'name', 'ativo',)
+
+class CriarEditarItemSerializer(ModelSerializer):
+    def create(self, validated_data):
+        return Item.objects.create(**validated_data)
+
+    class Meta:
+        model = Item
+        fields = ('name',)
