@@ -1,29 +1,24 @@
 <script setup>
-import { ref } from 'vue';
+import { computed, ref } from 'vue';
+
+import {
+    requiredRule, emailRule,
+    passwordLengthRule, passwordConfirmationRule
+} from '@/utils/formValidationRules';
 
 const name = ref('')
 const email = ref('')
 const password = ref('')
 const password_confirmation = ref('')
 
-const MIN_PASSWORD_LENGTH = 8
-
-const requiredRule = (value) => {
-    if (value) return true
-    return "Campo obrigatório"
-}
-const emailRule = [
-    requiredRule,
-    (v) => (/^\S+@\S+\.\S+$/.test(v)) || "Insira um e-mail válido.",
-]
-const passwordRule = [
-    requiredRule,
-    (v) => (v.length >= MIN_PASSWORD_LENGTH) || `A senha deve ter no mínimo ${MIN_PASSWORD_LENGTH} dígitos.`,
-]
-const passwordConfirmationRule = [
-    requiredRule,
-    (v) => v === password.value || "As senhas devem ser iguais.",
-]
+const isFormValid = computed(() => {
+    return [
+        requiredRule(name.value),
+        emailRule[1](email.value),
+        passwordLengthRule[1](password.value),
+        passwordConfirmationRule[1](pw_confirmation, pw)
+    ].every(rule => rule === true);
+});
 
 </script>
 
@@ -32,12 +27,12 @@ const passwordConfirmationRule = [
         <h1 class="text-center mb-5">Sign-up</h1>
         <v-text-field label="Nome" :rules="[requiredRule]" v-model="name" type="text" />
         <v-text-field label="E-mail" :rules="emailRule" v-model="email" type="email" />
-        <v-text-field label="Senha" :rules="passwordRule" v-model="password" type="password" />
-        <v-text-field label="Confirmação de senha" :rules="passwordConfirmationRule" v-model="password_confirmation"
-            type="password" />
+        <v-text-field label="Senha" :rules="passwordLengthRule" v-model="password" type="password" />
+        <v-text-field label="Confirmação de senha" :rules="[passwordConfirmationRule[1](pw_confirmation, pw)]"
+            v-model="password_confirmation" type="password" />
 
         <div class="form-actions">
-            <v-btn>Cadastrar-se</v-btn>
+            <v-btn :disabled="!isFormValid">Cadastrar-se</v-btn>
         </div>
     </v-form>
 </template>
