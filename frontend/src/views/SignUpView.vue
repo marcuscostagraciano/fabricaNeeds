@@ -8,7 +8,10 @@ const password_confirmation = ref('')
 
 const MIN_PASSWORD_LENGTH = 8
 
-const requiredRule = (value) => value || 'Campo obrigatório'
+const requiredRule = (value) => {
+    if (value) return true
+    return "Campo obrigatório"
+}
 const emailRule = [
     requiredRule,
     (v) => (/^\S+@\S+\.\S+$/.test(v)) || "Insira um e-mail válido.",
