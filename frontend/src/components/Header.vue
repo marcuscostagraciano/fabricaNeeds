@@ -1,12 +1,11 @@
 <script setup>
-
 </script>
 
 <template>
     <v-app-bar id="site-header">
         <v-row>
             <v-col>
-                <v-app-bar-nav-icon icon="mdi-menu" />
+                <v-app-bar-nav-icon icon="mdi-menu" @click="$emit('openSideBar')" />
             </v-col>
             <v-col id="site-title">
                 <v-app-bar-title>fabricaNeeds</v-app-bar-title>
