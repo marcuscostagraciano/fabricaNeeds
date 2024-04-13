@@ -1,39 +1,64 @@
 <script setup>
-import { computed, ref } from 'vue';
+import { computed, reactive, ref } from 'vue';
 
 import {
     requiredRule, emailRule,
     passwordLengthRule, passwordConfirmationRule
 } from '@/utils/formValidationRules';
 
-const name = ref('')
-const email = ref('')
-const password = ref('')
-const password_confirmation = ref('')
+import { useUserStore } from '@/stores/userStore';
+
+const userStore = useUserStore()
+
+const form = ref()
+const successful_signup = ref(false)
+const form_data = reactive({
+    name: '',
+    email: '',
+    password: '',
+    password_confirmation: '',
+})
 
 const isFormValid = computed(() => {
     return [
-        requiredRule(name.value),
-        emailRule[1](email.value),
-        passwordLengthRule[1](password.value),
-        passwordConfirmationRule[1](password_confirmation.value, password.value)
+        requiredRule(form_data.name),
+        emailRule[1](form_data.email),
+        passwordLengthRule[1](form_data.password),
+        passwordConfirmationRule[1](form_data.password_confirmation, form_data.password)
     ].every(rule => rule === true);
-});
+})
 
+async function createUser() {
+    const resp = await userStore.createUser(form_data)
+    successful_signup.value = resp
+
+    // Reset form fields
+    form.value.reset();
+
+    // Clear input values
+    form_data.name = '';
+    form_data.email = '';
+    form_data.password = '';
+    form_data.password_confirmation = '';
+}
 </script>
 
 <template>
-    <v-form class="form" @submit.prevent>
+    <v-form class="form" @submit.prevent ref="form">
         <h1 class="text-center mb-5">Sign-up</h1>
-        <v-text-field label="Nome" :rules="[requiredRule]" v-model="name" type="text" />
-        <v-text-field label="E-mail" :rules="emailRule" v-model="email" type="email" />
-        <v-text-field label="Senha" :rules="passwordLengthRule" v-model="password" type="password" />
+        <v-text-field label="Nome" :rules="[requiredRule]" v-model="form_data.name" type="text" />
+        <v-text-field label="E-mail" :rules="emailRule" v-model="form_data.email" type="email" />
+        <v-text-field label="Senha" :rules="passwordLengthRule" v-model="form_data.password" type="password" />
         <v-text-field label="Confirmação de senha"
-            :rules="[passwordConfirmationRule[1](password_confirmation, password)]" v-model="password_confirmation"
-            type="password" />
+            :rules="[passwordConfirmationRule[1](form_data.password_confirmation, form_data.password)]"
+            v-model="form_data.password_confirmation" type="password" />
 
         <div class="form-actions">
-            <v-btn :disabled="!isFormValid">Cadastrar-se</v-btn>
+            <v-btn :disabled="!isFormValid" @click="createUser()">Cadastrar-se</v-btn>
+
+            <router-link v-if="successful_signup" to="/signin">
+                <v-btn>Log-in</v-btn>
+            </router-link>
         </div>
     </v-form>
 </template>
