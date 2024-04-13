@@ -16,7 +16,7 @@ const isFormValid = computed(() => {
         requiredRule(name.value),
         emailRule[1](email.value),
         passwordLengthRule[1](password.value),
-        passwordConfirmationRule[1](password_confirmation, password)
+        passwordConfirmationRule[1](password_confirmation.value, password.value)
     ].every(rule => rule === true);
 });
 
