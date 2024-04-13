@@ -1,31 +1,41 @@
 <script setup>
-import { computed, ref } from 'vue';
+import { computed, reactive, ref } from 'vue';
 
 import { emailRule, passwordLengthRule } from '@/utils/formValidationRules';
 
-const email = ref('')
-const password = ref('')
+import { useAuthStore } from '@/stores/authStore';
+
+const authStore = useAuthStore()
+
+const form = ref()
+const form_data = reactive({
+    email: '',
+    password: '',
+})
 
 const isFormValid = computed(() => {
     return [
-        emailRule[1](email.value),
-        passwordLengthRule[1](password.value),
+        emailRule[1](form_data.email),
+        passwordLengthRule[1](form_data.password),
     ].every(rule => rule === true);
 });
 
+async function auth() {
+    authStore.getUserInfo(1)
+}
 </script>
 
 <template>
-    <v-form class="form">
+    <v-form class="form" ref="form">
         <h1 class="text-center mb-5">Sign-in</h1>
-        <v-text-field label="E-mail" :rules="emailRule" v-model="email" type="email" />
-        <v-text-field label="Senha" :rules="passwordLengthRule" v-model="password" type="password" />
+        <v-text-field label="E-mail" :rules="emailRule" v-model="form_data.email" type="email" />
+        <v-text-field label="Senha" :rules="passwordLengthRule" v-model="form_data.password" type="password" />
 
         <div class="form-actions">
             <router-link to="/signup">
                 <v-btn>Cadastrar-se</v-btn>
             </router-link>
-            <v-btn :disabled="!isFormValid">Log-in</v-btn>
+            <v-btn :disabled="!isFormValid" @click="auth">Log-in</v-btn>
         </div>
     </v-form>
 </template>

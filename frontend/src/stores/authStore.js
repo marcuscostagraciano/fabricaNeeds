@@ -1,13 +1,14 @@
+import { ref } from 'vue';
 import { defineStore } from 'pinia'
 
-export const useAuthStore = defineStore('auth', {
-  state: () => {
-    return { count: 0 }
-  },
+import AuthApi from '@/api/auth'
 
-  actions: {
-    increment() {
-      this.count++
-    },
-  },
+export const useAuthStore = defineStore('auth', () => {
+  const authApi = new AuthApi()
+
+  async function getUserInfo(id) {
+    return await authApi.getUserInfo(id)
+  }
+
+  return { getUserInfo }
 })
