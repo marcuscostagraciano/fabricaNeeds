@@ -16,7 +16,7 @@ const isFormValid = computed(() => {
         requiredRule(name.value),
         emailRule[1](email.value),
         passwordLengthRule[1](password.value),
-        passwordConfirmationRule[1](pw_confirmation, pw)
+        passwordConfirmationRule[1](password_confirmation, password)
     ].every(rule => rule === true);
 });
 
@@ -28,8 +28,9 @@ const isFormValid = computed(() => {
         <v-text-field label="Nome" :rules="[requiredRule]" v-model="name" type="text" />
         <v-text-field label="E-mail" :rules="emailRule" v-model="email" type="email" />
         <v-text-field label="Senha" :rules="passwordLengthRule" v-model="password" type="password" />
-        <v-text-field label="Confirmação de senha" :rules="[passwordConfirmationRule[1](pw_confirmation, pw)]"
-            v-model="password_confirmation" type="password" />
+        <v-text-field label="Confirmação de senha"
+            :rules="[passwordConfirmationRule[1](password_confirmation, password)]" v-model="password_confirmation"
+            type="password" />
 
         <div class="form-actions">
             <v-btn :disabled="!isFormValid">Cadastrar-se</v-btn>
