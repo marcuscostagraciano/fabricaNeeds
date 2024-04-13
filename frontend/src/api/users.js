@@ -2,7 +2,14 @@ import axios from "axios";
 
 export default class UsersApi {
     async createUser(user) {
-        const { data } = await axios.post("/users/", user);
-        return data.results;
+        await axios.post("/users/", user)
+            .then(() => {
+                alert("Cadastro realizado com sucesso!")
+                return true
+            })
+            .catch((err) => {
+                console.log(err)
+                return false
+            })
     }
 }

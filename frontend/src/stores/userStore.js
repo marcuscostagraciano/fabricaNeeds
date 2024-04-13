@@ -1,14 +1,19 @@
-import { computed, ref } from 'vue';
+import { ref } from 'vue';
 import { defineStore } from 'pinia'
 
-export const useAuthStore = defineStore('user', () => {
-    const count = ref(0)
+import UsersApi from '@/api/users';
 
-    const doubleCount = computed(() => count.value * 2)
+export const useUserStore = defineStore('user', () => {
+    const usersApi = new UsersApi()
 
-    function increment() {
-        count.value++
+    async function createUser(data) {
+        return await usersApi.createUser({
+            "name": data.name,
+            "email": data.email,
+            "password": data.password,
+            "balance": null,
+        })
     }
 
-    return { count, doubleCount, increment }
+    return { createUser }
 })
