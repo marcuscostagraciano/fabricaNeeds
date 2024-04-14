@@ -8,10 +8,11 @@ class ItemSerializer(ModelSerializer):
         model = Item
         fields = ('id', 'name', 'active',)
 
-class CriarEditarItemSerializer(ModelSerializer):
+class CriarItemSerializer(ModelSerializer):
     def create(self, validated_data):
         return Item.objects.create(**validated_data)
 
     class Meta:
         model = Item
         fields = ('name',)
+        
