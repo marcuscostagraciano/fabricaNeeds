@@ -21,12 +21,12 @@ const isFormValid = computed(() => {
 });
 
 async function auth() {
-    authStore.getUserInfo(1)
+    console.log('auth process');
 }
 </script>
 
 <template>
-    <v-form class="form" ref="form">
+    <v-form class="form" @submit.prevent="" ref="form">
         <h1 class="text-center mb-5">Sign-in</h1>
         <v-text-field label="E-mail" :rules="emailRule" v-model="form_data.email" type="email" />
         <v-text-field label="Senha" :rules="passwordLengthRule" v-model="form_data.password" type="password" />
@@ -35,7 +35,7 @@ async function auth() {
             <router-link to="/signup">
                 <v-btn>Cadastrar-se</v-btn>
             </router-link>
-            <v-btn :disabled="!isFormValid" @click="auth">Log-in</v-btn>
+            <v-btn :disabled="!isFormValid" type="submit">Log-in</v-btn>
         </div>
     </v-form>
 </template>
