@@ -1,9 +1,10 @@
 <script setup>
-import { computed, reactive, ref } from 'vue';
+import { computed, onMounted, reactive, ref } from 'vue';
 
 import { requiredRule } from '@/utils/formValidationRules';
-
 import { useItemStore } from '@/stores/itemStore';
+
+import ListRegisteredItems from '@/components/ListRegisteredItems.vue'
 
 const itemStore = useItemStore()
 
@@ -12,6 +13,12 @@ const form_data = reactive({
     item_name: '',
     is_active: false,
 })
+const registered_items = ref()
+
+onMounted(async () => {
+    registered_items.value = await itemStore.getItems()
+})
+
 
 const isFormValid = computed(() => {
     return requiredRule(form_data.item_name) == true;
@@ -35,6 +42,8 @@ async function createItem() {
             <v-btn :disabled="!isFormValid" type="submit">Registrar item</v-btn>
         </div>
     </v-form>
+    <h1 class="text-center mt-5">Itens já registrados</h1>
+    <ListRegisteredItems :items_list="registered_items" />
 </template>
 
 <style scoped>
