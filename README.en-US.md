@@ -33,6 +33,11 @@ WIP
 <h4>Figure 2: Class Diagram</h4>
 <img src="docs/class_diagram.jpg" alt="Class Diagram">
 
+<br>
+
+<h4>Figure 3: Color Palette</h4>
+<img src="docs/color_palette.png" alt="Color Palette" width=512px>
+
 </div>
 
 ### How it works

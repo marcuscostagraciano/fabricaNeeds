@@ -33,6 +33,11 @@ WIP
 <h4>Figura 2: Diagrama de Classes</h4>
 <img src="docs/diagrama_de_classes.jpg" alt="Diagrama de Classes">
 
+<br>
+
+<h4>Figura 3: Paleta de Cores</h4>
+<img src="docs/color_palette.png" alt="Paleta de Cores" width=512px>
+
 </div>
 
 ### Funcionamento

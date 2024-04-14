@@ -1,0 +1,42 @@
+{
+  "items": [
+    {
+      "id": "1",
+      "name": "Açúcar",
+      "ativo": false
+    },
+    {
+      "id": "2",
+      "name": "Café",
+      "ativo": true
+    },
+    {
+      "id": "3",
+      "name": "Leite",
+      "ativo": false
+    }
+  ],
+  "users": [
+    {
+      "id": "1",
+      "name": "teste 1",
+      "email": "teste1@teste.com",
+      "password": "senha.111",
+      "balance": 100
+    },
+    {
+      "id": "2",
+      "name": "teste 2",
+      "email": "teste2@teste.com",
+      "password": "senha.222",
+      "balance": 200
+    },
+    {
+      "id": "3",
+      "name": "teste 3",
+      "email": "teste3@teste.com",
+      "password": "senha.333",
+      "balance": 300
+    }
+  ]
+}
