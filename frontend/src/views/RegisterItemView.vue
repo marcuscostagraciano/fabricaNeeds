@@ -36,14 +36,13 @@ async function createItem() {
         <h1 class="text-center mb-5">Cadastro de itens</h1>
         <v-text-field label="Nome do item" :rules="[requiredRule]" v-model="form_data.item_name" />
         <v-checkbox label="Adicionar item à lista?" v-model="form_data.is_active" />
-        <!-- <v-text-field label="Senha" :rules="passwordLengthRule" v-model="form_data.password" type="password" /> -->
 
         <div class="form-actions">
             <v-btn :disabled="!isFormValid" type="submit">Registrar item</v-btn>
         </div>
     </v-form>
     <h1 class="text-center mt-5">Itens já registrados</h1>
-    <ListRegisteredItems :items_list="registered_items" />
+    <ListRegisteredItems :items_list="registered_items" :auxiliar_function="itemStore.deleteItem" />
 </template>
 
 <style scoped>

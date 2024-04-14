@@ -1,7 +1,9 @@
 <script setup>
 defineProps({
-    items_list: Object
+    items_list: Object,
+    auxiliar_function: Function
 })
+
 </script>
 
 <template>
@@ -22,8 +24,7 @@ defineProps({
                 <td v-if="item.active">Sim</td>
                 <td v-else>Não</td>
 
-                <!-- <td><button @click="excluir(marca.id)" class="excluir"></button></td> -->
-                <td><v-icon @click="console.log('deleted, ok?')" class="delete-button">mdi-delete</v-icon></td>
+                <td><v-icon @click="auxiliar_function(item.id)" class="delete-button">mdi-delete</v-icon></td>
             </tr>
         </tbody>
     </v-table>

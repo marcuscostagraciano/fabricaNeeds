@@ -3,8 +3,9 @@ import { defineStore } from 'pinia'
 
 import ItemsApi from '@/api/items';
 
-export const useItemStore = defineStore('user', () => {
+export const useItemStore = defineStore('item', () => {
     const itemsApi = new ItemsApi()
+    const items = ref([])
 
     async function getItems() {
         return await itemsApi.getItems()
