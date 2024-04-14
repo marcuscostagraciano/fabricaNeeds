@@ -1,0 +1,37 @@
+[
+    {
+        "path": "/",
+        "name": "home",
+        "pt_name": "página inicial",
+        "component": "HomeView",
+        "show": true
+    },
+    {
+        "path": "/history",
+        "name": "history",
+        "pt_name": "histórico",
+        "component": "HomeView",
+        "show": true
+    },
+    {
+        "path": "/signin",
+        "name": "sign-in",
+        "pt_name": "login",
+        "component": "SignInView",
+        "show": false
+    },
+    {
+        "path": "/signup",
+        "name": "sign-up",
+        "pt_name": "cadastro",
+        "component": "SignUpView",
+        "show": false
+    },
+    {
+        "path": "/registeritem",
+        "name": "register-item",
+        "pt_name": "registrar itens",
+        "component": "RegisterItemView",
+        "show": true
+    }
+]
