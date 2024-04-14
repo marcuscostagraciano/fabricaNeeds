@@ -27,7 +27,7 @@ async function auth() {
 
 <template>
     <v-form class="form" @submit.prevent="" ref="form">
-        <h1 class="text-center mb-5">Sign-in</h1>
+        <h1 class="text-center mb-5">Login</h1>
         <v-text-field label="E-mail" :rules="emailRule" v-model="form_data.email" type="email" />
         <v-text-field label="Senha" :rules="passwordLengthRule" v-model="form_data.password" type="password" />
 

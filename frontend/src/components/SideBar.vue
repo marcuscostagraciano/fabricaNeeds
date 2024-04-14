@@ -16,7 +16,7 @@ defineComponent({
     <v-navigation-drawer v-model="is_showing" temporary>
         <v-list density="compact" nav>
             <v-list-item v-for="route in showable_routes" :to="route.path" class="list-items">
-                {{ route.name }}
+                {{ route.pt_name }}
                 <hr>
             </v-list-item>
         </v-list>

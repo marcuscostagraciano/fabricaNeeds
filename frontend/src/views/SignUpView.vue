@@ -45,7 +45,7 @@ async function createUser() {
 
 <template>
     <v-form class="form" @submit.prevent ref="form">
-        <h1 class="text-center mb-5">Sign-up</h1>
+        <h1 class="text-center mb-5">Cadastro</h1>
         <v-text-field label="Nome" :rules="[requiredRule]" v-model="form_data.name" type="text" />
         <v-text-field label="E-mail" :rules="emailRule" v-model="form_data.email" type="email" />
         <v-text-field label="Senha" :rules="passwordLengthRule" v-model="form_data.password" type="password" />

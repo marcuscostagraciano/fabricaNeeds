@@ -5,10 +5,10 @@ import SignInView from '@/views/SignInView.vue';
 import SignUpView from '@/views/SignUpView.vue';
 
 export const routes = [
-  { path: '/', name: 'home', component: HomeView, show: true },
-  { path: '/history', name: 'history', component: HomeView, show: true },
-  { path: '/signin', name: 'sign-in', component: SignInView, show: false },
-  { path: '/signup', name: 'sign-up', component: SignUpView, show: false },
+  { path: '/', name: 'home', pt_name: 'página inicial', component: HomeView, show: true },
+  { path: '/history', name: 'history', pt_name: 'histórico', component: HomeView, show: true },
+  { path: '/signin', name: 'sign-in', pt_name: 'login', component: SignInView, show: false },
+  { path: '/signup', name: 'sign-up', pt_name: 'cadastro', component: SignUpView, show: false },
 ]
 
 export const router = createRouter({
