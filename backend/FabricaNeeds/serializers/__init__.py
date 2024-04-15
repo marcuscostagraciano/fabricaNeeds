@@ -1,2 +1,2 @@
-from .item import ItemSerializer#, CriarItemSerializer
+from .item import ItemSerializer
 from .balance import BalanceSerializer
