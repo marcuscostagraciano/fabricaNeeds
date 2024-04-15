@@ -3,9 +3,7 @@ import { computed, onMounted, reactive, ref } from 'vue';
 
 import { requiredRule } from '@/utils/formValidationRules';
 import { useItemStore } from '@/stores/itemStore';
-
-import ItemsDetailRow from '@/components/RegisteredItemsList/ItemsDetailRow.vue'
-import ItemsTableHeader from '@/components/RegisteredItemsList/ItemsTableHeader.vue'
+import RegisterItemsTable from '@/components/RegisterItemsTable.vue'
 
 const itemStore = useItemStore()
 
@@ -14,23 +12,22 @@ const form_data = reactive({
     item_name: '',
     is_active: false,
 })
-const registered_items = ref()
-
-onMounted(async () => {
-    registered_items.value = await itemStore.getItems()
-})
 
 const isFormValid = computed(() => {
     return requiredRule(form_data.item_name) == true;
 });
 
-async function createItem() {
+const createItem = async () => {
     await itemStore.createItem({
         'name': form_data.item_name,
         'active': form_data.is_active
     })
     form.value.reset()
 }
+// const deleteItem = async (id) => {
+//     await itemStore.deleteItem(id)
+//     form.value.reset()
+// }
 
 </script>
 
@@ -44,13 +41,7 @@ async function createItem() {
             <v-btn :disabled="!isFormValid" type="submit">Registrar item</v-btn>
         </div>
     </v-form>
-    <h1 class="text-center mt-5">Itens já registrados</h1>
-    <v-table>
-        <ItemsTableHeader />
-        <tbody>
-            <ItemsDetailRow v-for="item in registered_items" :item="item" />
-        </tbody>
-    </v-table>
+    <RegisterItemsTable />
 </template>
 
 <style scoped>
