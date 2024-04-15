@@ -4,7 +4,8 @@ import { computed, onMounted, reactive, ref } from 'vue';
 import { requiredRule } from '@/utils/formValidationRules';
 import { useItemStore } from '@/stores/itemStore';
 
-import ListRegisteredItems from '@/components/ListRegisteredItems.vue'
+import ItemsDetailRow from '@/components/RegisteredItemsList/ItemsDetailRow.vue'
+import ItemsTableHeader from '@/components/RegisteredItemsList/ItemsTableHeader.vue'
 
 const itemStore = useItemStore()
 
@@ -16,7 +17,7 @@ const form_data = reactive({
 const registered_items = ref()
 
 onMounted(async () => {
-    registered_items.value = await itemStore.getItems()
+    // registered_items.value = await itemStore.getItems()
 })
 
 
@@ -42,7 +43,12 @@ async function createItem() {
         </div>
     </v-form>
     <h1 class="text-center mt-5">Itens já registrados</h1>
-    <ListRegisteredItems :items_list="registered_items" :auxiliar_function="itemStore.deleteItem" />
+    <v-table>
+        <ItemsTableHeader />
+        <tbody>
+            <ItemsDetailRow v-for="item in itemStore.item" :item="item" />
+        </tbody>
+    </v-table>
 </template>
 
 <style scoped>
