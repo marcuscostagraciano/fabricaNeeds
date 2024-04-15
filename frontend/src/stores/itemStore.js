@@ -16,22 +16,17 @@ export const useItemStore = defineStore('item', () => {
     }
 
     async function createItem(item) {
-        // const item_already_registered = items.value
-        //     .filter(registed_item => (registed_item.name === item.name))
+        const item_already_registered = items.value
+            .filter(registed_item => (registed_item.name === item.name))
 
-        // if (!item_already_registered.length) {
-        //     items.value.push({
-        //         "name": item.name,
-        //         "active": item.active
-        //     })
-        //     await itemsApi.createItem(item)
-        // }
-        // else alert("Item já registrado")
-        items.value.push({
-            "name": item.name,
-            "active": item.active
-        })
-        await itemsApi.createItem(item)
+        if (!item_already_registered.length) {
+            items.value.push({
+                "name": item.name,
+                "active": item.active
+            })
+            await itemsApi.createItem(item)
+        }
+        else alert("Item já registrado")
     }
 
     // async function deleteItem(name) {

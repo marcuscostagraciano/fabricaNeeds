@@ -9,19 +9,16 @@ const itemStore = useItemStore()
 
 const form = ref()
 const form_data = reactive({
-    item_name: '',
-    is_active: false,
+    name: '',
+    active: false,
 })
 
 const isFormValid = computed(() => {
-    return requiredRule(form_data.item_name) == true;
+    return requiredRule(form_data.name) == true;
 });
 
 const createItem = async () => {
-    await itemStore.createItem({
-        'name': form_data.item_name,
-        'active': form_data.is_active
-    })
+    await itemStore.createItem(form_data)
     form.value.reset()
 }
 // const deleteItem = async (id) => {
@@ -34,8 +31,8 @@ const createItem = async () => {
 <template>
     <v-form class="mb-5 form" @submit.prevent="createItem" ref="form">
         <h1 class="text-center mb-5">Cadastro de itens</h1>
-        <v-text-field label="Nome do item" :rules="[requiredRule]" v-model="form_data.item_name" />
-        <v-checkbox label="Adicionar item à lista?" v-model="form_data.is_active" />
+        <v-text-field label="Nome do item" :rules="[requiredRule]" v-model="form_data.name" />
+        <v-checkbox label="Adicionar item à lista?" v-model="form_data.active" />
 
         <div class="form-actions">
             <v-btn :disabled="!isFormValid" type="submit">Registrar item</v-btn>
