@@ -32,7 +32,7 @@ const createItem = async () => {
 </script>
 
 <template>
-    <v-form class="form" @submit.prevent="createItem" ref="form">
+    <v-form class="mb-5 form" @submit.prevent="createItem" ref="form">
         <h1 class="text-center mb-5">Cadastro de itens</h1>
         <v-text-field label="Nome do item" :rules="[requiredRule]" v-model="form_data.item_name" />
         <v-checkbox label="Adicionar item à lista?" v-model="form_data.is_active" />
@@ -41,6 +41,7 @@ const createItem = async () => {
             <v-btn :disabled="!isFormValid" type="submit">Registrar item</v-btn>
         </div>
     </v-form>
+    <hr>
     <RegisterItemsTable />
 </template>
 

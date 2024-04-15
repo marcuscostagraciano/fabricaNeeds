@@ -7,13 +7,13 @@ itemStore.getItems()
 </script>
 
 <template>
-    <h1 class="text-center mt-5">Itens já registrados</h1>
+    <h1 class="text-center mt-2 mb-5">Itens já registrados</h1>
     <h1 v-if="itemStore.loading">Carregando itens</h1>
-    <v-table v-else>
+    <v-table v-else density="compact" class="rounded-lg">
         <thead>
             <tr>
-                <th>Item</th>
-                <th>Está na lista?</th>
+                <th class="text-center">Item</th>
+                <th class="text-center">Está na lista?</th>
             </tr>
         </thead>
         <tbody>
@@ -29,5 +29,7 @@ itemStore.getItems()
 <style scoped>
 * {
     text-align: center;
+    border: 1px solid rgb(119, 119, 119, 0.5);
+    /* border-radius: 10%; */
 }
 </style>
