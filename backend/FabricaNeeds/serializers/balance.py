@@ -3,9 +3,10 @@ from rest_framework import serializers
 
 from FabricaNeeds.models import Balance
 
+
 class BalanceSerializer(ModelSerializer):
     def update(self, instance, validated_data):
-        value_to_add = validated_data.pop('value')
+        value_to_add = validated_data.pop("value")
         if value_to_add:
             instance.value += value_to_add
             instance.save()
@@ -13,4 +14,4 @@ class BalanceSerializer(ModelSerializer):
 
     class Meta:
         model = Balance
-        fields = '__all__'
+        fields = "__all__"

@@ -3,10 +3,16 @@ from rest_framework import serializers
 
 from FabricaNeeds.models import Item
 
+
 class ItemSerializer(ModelSerializer):
     class Meta:
         model = Item
-        fields = ('id', 'name', 'active',)
+        fields = (
+            "id",
+            "name",
+            "active",
+        )
+
 
 class CriarItemSerializer(ModelSerializer):
     def create(self, validated_data):
@@ -14,5 +20,4 @@ class CriarItemSerializer(ModelSerializer):
 
     class Meta:
         model = Item
-        fields = ('name',)
-        
+        fields = ("name",)
