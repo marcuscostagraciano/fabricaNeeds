@@ -7,10 +7,10 @@ from FabricaNeeds.views import ItemViewSet
 from FabricaNeeds.views import BalanceViewSet
 
 router = DefaultRouter()
-router.register(r'items', ItemViewSet)
-router.register(r'balance', BalanceViewSet)
+router.register(r"items", ItemViewSet)
+router.register(r"balance", BalanceViewSet)
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('', include(router.urls)),
+    path("admin/", admin.site.urls),
+    path("", include(router.urls)),
 ]
