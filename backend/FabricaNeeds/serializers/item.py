@@ -6,8 +6,4 @@ from FabricaNeeds.models import Item
 class ItemSerializer(ModelSerializer):
     class Meta:
         model = Item
-        fields = (
-            "id",
-            "name",
-            "active",
-        )
+        fields = "__all__"
