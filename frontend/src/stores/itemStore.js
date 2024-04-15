@@ -10,9 +10,12 @@ export const useItemStore = defineStore('item', () => {
     async function getItems() {
         return await itemsApi.getItems()
     }
+    async function createItem(item) {
+        return await itemsApi.createItem(item)
+    }
     async function deleteItem(id) {
         return await itemsApi.deleteItem(id)
     }
 
-    return { getItems, deleteItem }
+    return { getItems, createItem, deleteItem }
 })

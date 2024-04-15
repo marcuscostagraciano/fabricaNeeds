@@ -17,16 +17,18 @@ const form_data = reactive({
 const registered_items = ref()
 
 onMounted(async () => {
-    // registered_items.value = await itemStore.getItems()
+    registered_items.value = await itemStore.getItems()
 })
-
 
 const isFormValid = computed(() => {
     return requiredRule(form_data.item_name) == true;
 });
 
 async function createItem() {
-    console.log(form_data);
+    await itemStore.createItem({
+        'name': form_data.item_name,
+        'active': form_data.is_active
+    })
     form.value.reset()
 }
 
@@ -46,7 +48,7 @@ async function createItem() {
     <v-table>
         <ItemsTableHeader />
         <tbody>
-            <ItemsDetailRow v-for="item in itemStore.item" :item="item" />
+            <ItemsDetailRow v-for="item in registered_items" :item="item" />
         </tbody>
     </v-table>
 </template>
