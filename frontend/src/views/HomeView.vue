@@ -7,6 +7,7 @@ const itemStore = useItemStore()
 
 
 const balanceStore = useBalanceStore()
+balanceStore.getBalance()
 const form_balance = ref()
 const form_data_balance = reactive({
     id: 0,
@@ -20,10 +21,11 @@ const isFormValid = computed(() => {
 
 <template>
     <div class="home">
-        <div class="d-flex">
-            <h1 class="text-start mb-5 me-auto">Saldo</h1>
+        <div class="d-flex mb-3">
+            <h1 class="text-start me-auto mt-auto">Saldo</h1>
+            <h1 v-if="balanceStore.loading">Carregando itens</h1>
+            <h3 v-else class=" me-2 mt-3" >R$ {{ balanceStore.registeredBalance[0].value }}</h3>
             <div class="">
-                <h2 class="" >R$ {{ balanceStore.getBalance }}</h2>
                 <v-btn class="h-auto w-auto pa-3" icon="mdi-plus" size="x-large"></v-btn>
             </div>
         </div>
