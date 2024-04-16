@@ -1,12 +1,16 @@
 <script setup>
 import { computed, reactive, ref } from 'vue';
 import { useItemStore } from '@/stores/itemStore';
+import { useBalanceStore } from '@/stores/balanceStore';
 
 const itemStore = useItemStore()
-const form = ref()
-const form_data = reactive({
-    item_name: '',
-    is_active: false,
+
+
+const balanceStore = useBalanceStore()
+const form_balance = ref()
+const form_data_balance = reactive({
+    id: 0,
+    value: 0,
 })
 
 const isFormValid = computed(() => {
@@ -19,8 +23,8 @@ const isFormValid = computed(() => {
         <div class="d-flex">
             <h1 class="text-start mb-5 me-auto">Saldo</h1>
             <div class="">
-                
-                <v-btn class=""></v-btn>
+                <h2 class="" >R$ {{ balanceStore.getBalance }}</h2>
+                <v-btn class="h-auto w-auto pa-3" icon="mdi-plus" size="x-large"></v-btn>
             </div>
         </div>
         <hr>
