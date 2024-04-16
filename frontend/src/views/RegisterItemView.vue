@@ -1,40 +1,45 @@
 <script setup>
-import { computed, reactive, ref } from 'vue';
+import { computed, onMounted, reactive, ref } from 'vue';
 
 import { requiredRule } from '@/utils/formValidationRules';
-
 import { useItemStore } from '@/stores/itemStore';
+import RegisterItemsTable from '@/components/RegisterItemsTable.vue'
 
 const itemStore = useItemStore()
 
 const form = ref()
 const form_data = reactive({
-    item_name: '',
-    is_active: false,
+    name: '',
+    active: false,
 })
 
 const isFormValid = computed(() => {
-    return requiredRule(form_data.item_name) == true;
+    return requiredRule(form_data.name) == true;
 });
 
-async function createItem() {
-    console.log(form_data);
+const createItem = async () => {
+    await itemStore.createItem(form_data)
     form.value.reset()
 }
+// const deleteItem = async (id) => {
+//     await itemStore.deleteItem(id)
+//     form.value.reset()
+// }
 
 </script>
 
 <template>
-    <v-form class="form" @submit.prevent="createItem" ref="form">
+    <v-form class="mb-5 form" @submit.prevent="createItem" ref="form">
         <h1 class="text-center mb-5">Cadastro de itens</h1>
-        <v-text-field label="Nome do item" :rules="[requiredRule]" v-model="form_data.item_name" />
-        <v-checkbox label="Adicionar item à lista?" v-model="form_data.is_active" />
-        <!-- <v-text-field label="Senha" :rules="passwordLengthRule" v-model="form_data.password" type="password" /> -->
+        <v-text-field label="Nome do item" :rules="[requiredRule]" v-model="form_data.name" />
+        <v-checkbox label="Adicionar item à lista?" v-model="form_data.active" />
 
         <div class="form-actions">
             <v-btn :disabled="!isFormValid" type="submit">Registrar item</v-btn>
         </div>
     </v-form>
+    <hr>
+    <RegisterItemsTable />
 </template>
 
 <style scoped>

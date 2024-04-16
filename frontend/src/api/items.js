@@ -2,12 +2,15 @@ import axios from "axios";
 
 export default class ItemsApi {
     async getItems() {
-        axios.get(`/items/`)
-            .then(response => {
-                return response.data
-            })
-            .finally(response => {
-                console.log(response);
-            })
+        const { data } = await axios.get(`/items/`)
+        return data
     }
+    async createItem(item) {
+        const { data } = await axios.post(`/items/`, item)
+        return data.results
+    }
+    // async deleteItem(item_name) {
+    //     const { data } = await axios.delete(`/items/${item_name}/`);
+    //     return data.results;
+    // }
 }

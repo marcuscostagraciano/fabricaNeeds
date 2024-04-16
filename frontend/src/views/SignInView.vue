@@ -9,8 +9,8 @@ const authStore = useAuthStore()
 
 const form = ref()
 const form_data = reactive({
-    email: '',
-    password: '',
+    email: 'teste@teste.com',
+    password: 'senha.123',
 })
 
 const isFormValid = computed(() => {
@@ -20,13 +20,15 @@ const isFormValid = computed(() => {
     ].every(rule => rule === true);
 });
 
-async function auth() {
-    console.log('auth process');
+const getToken = async () => {
+    const token = await authStore.getToken(form_data)
+    console.log(form_data)
+    console.log(token)
 }
 </script>
 
 <template>
-    <v-form class="form" @submit.prevent="" ref="form">
+    <v-form class="form" @submit.prevent="getToken" ref="form">
         <h1 class="text-center mb-5">Login</h1>
         <v-text-field label="E-mail" :rules="emailRule" v-model="form_data.email" type="email" />
         <v-text-field label="Senha" :rules="passwordLengthRule" v-model="form_data.password" type="password" />
