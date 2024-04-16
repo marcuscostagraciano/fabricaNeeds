@@ -6,9 +6,14 @@ import AuthApi from '@/api/auth'
 export const useAuthStore = defineStore('auth', () => {
   const authApi = new AuthApi()
 
-  async function getUserInfo(id) {
-    return await authApi.getUserInfo(id)
+  async function getToken(user_info) {
+    const token = await authApi.getToken({
+      "username": user_info.email,
+      "password": user_info.password
+    })
+
+    return token
   }
 
-  return { getUserInfo }
+  return { getToken }
 })
