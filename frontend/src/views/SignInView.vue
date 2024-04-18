@@ -20,17 +20,16 @@ const isFormValid = computed(() => {
     ].every(rule => rule === true);
 });
 
-const getToken = async () => {
-    const token = await authStore.getToken(form_data)
-    console.log(form_data)
-    console.log(token)
+const signIn = async () => {
+    await authStore.signIn(form_data)
 }
 </script>
 
 <template>
-    <v-form class="form" @submit.prevent="getToken" ref="form">
+    <v-form class="form" @submit.prevent="signIn" ref="form">
         <h1 class="text-center mb-5">Login</h1>
-        <v-text-field label="E-mail" :rules="emailRule" v-model="form_data.email" type="email" />
+        <!-- <v-text-field label="E-mail" :rules="emailRule" v-model="form_data.email" type="email" /> -->
+        <v-text-field label="Usuário" type="text" />
         <v-text-field label="Senha" :rules="passwordLengthRule" v-model="form_data.password" type="password" />
 
         <div class="form-actions">
