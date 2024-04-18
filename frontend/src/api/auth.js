@@ -6,7 +6,7 @@ export default class AuthApi {
         return data
     }
     async refreshAccessToken(refresh_token){
-        const { data } = await axios.post('/token/refresh/', refresh_token)
-        return data
+        const { data } = await axios.post('/token/refresh', { refresh: refresh_token })
+        return data.access
     }
 }
