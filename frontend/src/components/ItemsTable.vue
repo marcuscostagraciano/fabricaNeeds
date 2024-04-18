@@ -1,8 +1,12 @@
 <script setup>
 import { useItemStore } from '@/stores/itemStore';
+import ItemsDetails from '@/components/ItemsDetails.vue'
+
+defineProps({
+    item_selection: String,
+})
 
 const itemStore = useItemStore()
-itemStore.getItems()
 
 </script>
 
@@ -12,17 +16,12 @@ itemStore.getItems()
     <v-table v-else density="compact" class="rounded-lg">
         <thead>
             <tr>
+                <th class="text-center">ID</th>
                 <th class="text-center">Item</th>
                 <th class="text-center">Está na lista?</th>
             </tr>
         </thead>
-        <tbody>
-            <tr v-for="item in itemStore.registeredItems">
-                <td>{{ item.name }}</td>
-                <td v-if="item.active">Sim</td>
-                <td v-else>Não</td>
-            </tr>
-        </tbody>
+        <ItemsDetails :item_selection="item_selection" />
     </v-table>
 </template>
 

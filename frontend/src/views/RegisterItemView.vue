@@ -3,7 +3,7 @@ import { computed, onMounted, reactive, ref } from 'vue';
 
 import { requiredRule } from '@/utils/formValidationRules';
 import { useItemStore } from '@/stores/itemStore';
-import RegisterItemsTable from '@/components/RegisterItemsTable.vue'
+import ItemsTable from '@/components/ItemsTable.vue'
 
 const itemStore = useItemStore()
 
@@ -39,7 +39,7 @@ const createItem = async () => {
         </div>
     </v-form>
     <hr>
-    <RegisterItemsTable />
+    <ItemsTable item_selection="registered" />
 </template>
 
 <style scoped>
