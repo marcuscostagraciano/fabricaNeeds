@@ -5,14 +5,51 @@ import AuthApi from '@/api/auth'
 
 export const useAuthStore = defineStore('auth', () => {
   const authApi = new AuthApi()
+  const accessTokenAgeInSeconds = 3 * 60 * 60
+  const refreshTokenAgeInSeconds = 24 * 60 * 60
+
+  function registerCookies(token){
+    document.cookie = `access=${token.access};max-age=${accessTokenAgeInSeconds};path=/`
+    document.cookie = `refresh=${token.refresh};max-age=${refreshTokenAgeInSeconds};path=/`
+  }
+
+  function registerAccessCookie(access_token){
+    document.cookie = `access=${access_token};max-age=${accessTokenAgeInSeconds};path=/`
+  }
+
+  function getCookies(){
+    let result_access;
+    let result_refresh;
+    return {
+      access: (result_access = new RegExp('(?:^|; )access=([^;]*)').exec(document.cookie)) ? (result_access[1]) : null,
+      refresh: (result_refresh = new RegExp('(?:^|; )refresh=([^;]*)').exec(document.cookie)) ? (result_refresh[1]) : null,
+    };
+  }
 
   async function getToken(user_info) {
-    const token = await authApi.getToken({
-      "username": user_info.email,
-      "password": user_info.password
-    })
+    try{
+      let token = getCookies()
 
-    return token
+      if(token.access != null){
+        return token
+      }
+
+      if(token.refresh != null){
+        token.access = await authApi.refreshAccessToken(token.refresh)
+        registerAccessCookie(token.access)
+        return token
+      }
+
+      token = await authApi.getToken({
+        "username": user_info.email,
+        "password": user_info.password
+      })
+      registerCookies(token)
+      return token
+    }
+    catch(e){
+      console.error(e.message)
+    }
   }
 
   return { getToken }
