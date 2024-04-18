@@ -34,9 +34,10 @@ export const useItemStore = defineStore('item', () => {
     }
 
     async function toggleActive(id) {
-        const selected_item = items.value.filter(item => (item.id == id))
+        // const selected_item = items.value.filter(item => (item.id == id))
+        items.value[id - 1].active = !items.value[id - 1].active
 
-        itemsApi.toggleActive(id, { "active": !selected_item[0].active })
+        itemsApi.toggleActive(id, { "active": items.value[id - 1].active })
     }
 
     // async function deleteItem(name) {
