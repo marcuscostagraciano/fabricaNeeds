@@ -16,6 +16,7 @@ const itemStore = useItemStore()
     <v-table v-else density="compact" class="rounded-lg">
         <thead>
             <tr>
+                <th class="text-center">ID</th>
                 <th class="text-center">Item</th>
                 <th class="text-center">Está na lista?</th>
             </tr>

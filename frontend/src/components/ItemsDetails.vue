@@ -12,6 +12,7 @@ itemStore.getItems()
 <template>
     <tbody v-if="item_selection == 'registered'">
         <tr v-for="item in itemStore.registeredItems">
+            <td>{{ item.id }}</td>
             <td>{{ item.name }}</td>
             <td v-if="item.active">Sim</td>
             <td v-else>Não</td>
