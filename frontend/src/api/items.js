@@ -13,4 +13,8 @@ export default class ItemsApi {
     //     const { data } = await axios.delete(`/items/${item_name}/`);
     //     return data.results;
     // }
+    async toggleActive(item_id, new_status) {
+        const { data } = await axios.patch(`/items/${item_id}/`, new_status)
+        return data.results
+    }
 }

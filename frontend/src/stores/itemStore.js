@@ -20,13 +20,19 @@ export const useItemStore = defineStore('item', () => {
             .filter(registed_item => (registed_item.name === item.name))
 
         if (!item_already_registered.length) {
-            items.value.push({
-                "name": item.name,
-                "active": item.active
-            })
+            // items.value.push({
+            //     "name": item.name,
+            //     "active": item.active
+            // })
             await itemsApi.createItem(item)
         }
         else alert("Item já registrado")
+    }
+
+    async function toggleActive(id) {
+        const selected_item = items.value.filter(item => (item.id == id))
+
+        itemsApi.toggleActive(id, { "active": !selected_item[0].active })
     }
 
     // async function deleteItem(name) {
@@ -38,5 +44,5 @@ export const useItemStore = defineStore('item', () => {
     const activeItems = computed(() => (items.value.filter(item => (item.active))))
     const inactiveItems = computed(() => (items.value.filter(item => (!item.active))))
 
-    return { getItems, createItem, registeredItems, activeItems, inactiveItems }
+    return { getItems, createItem, toggleActive, registeredItems, activeItems, inactiveItems }
 })
