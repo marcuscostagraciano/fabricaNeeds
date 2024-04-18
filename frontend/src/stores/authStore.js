@@ -31,16 +31,17 @@ export const useAuthStore = defineStore('auth', () => {
       let token = getCookies()
 
       if(token.access != null){
-        return token
+        return token.access
       }
 
       if(token.refresh != null){
         token.access = await authApi.refreshAccessToken(token.refresh)
         registerAccessCookie(token.access)
-        return token
+        return token.access
       }
 
       window.location.replace(`${window.location.origin}/signin`)
+      return null
     }
     catch(e){
       console.error(e.message)

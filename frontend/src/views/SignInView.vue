@@ -9,7 +9,7 @@ const authStore = useAuthStore()
 
 const form = ref()
 const form_data = reactive({
-    email: 'teste@teste.com',
+    email: 'teste',
     password: 'senha.123',
 })
 
