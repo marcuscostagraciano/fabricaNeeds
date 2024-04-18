@@ -19,7 +19,10 @@ export const useItemStore = defineStore('item', () => {
         const item_already_registered = items.value
             .filter(registed_item => (registed_item.name === item.name))
 
-        if (!item_already_registered.length) {
+        if (!item.name.length) {
+            alert("Preencha o campo de nome do item")
+        }
+        else if (!item_already_registered.length) {
             items.value.push({
                 "id": lastItem.value.id + 1,
                 "name": item.name,
