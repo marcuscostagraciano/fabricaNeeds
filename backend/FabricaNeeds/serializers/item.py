@@ -7,3 +7,8 @@ class ItemSerializer(ModelSerializer):
     class Meta:
         model = Item
         fields = "__all__"
+
+class CriarEditarItemSerializer(ModelSerializer):
+    class Meta:
+        model = Item
+        fields = ('name', 'active',)
