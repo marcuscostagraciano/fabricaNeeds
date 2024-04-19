@@ -3,7 +3,7 @@ from FabricaNeeds.models import Item
 from django.contrib.auth.models import User
 
 class History(models.Model):
-    date = models.DateTimeField(blank=False)
+    date = models.DateTimeField(auto_now=True) 
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     item = models.ForeignKey(Item, on_delete=models.CASCADE)
     justification = models.CharField(max_length=255, blank=True)
