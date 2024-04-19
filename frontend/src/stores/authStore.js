@@ -49,13 +49,18 @@ export const useAuthStore = defineStore('auth', () => {
   }
 
   async function signIn(user_info) {
-    const token = await authApi.getToken({
-      "username": user_info.email,
-      "password": user_info.password
-    })
-    registerCookies(token)
-    
-    window.location.replace(window.location.origin)
+    try{
+      const token = await authApi.getToken({
+        "username": user_info.user,
+        "password": user_info.password
+      })
+      registerCookies(token)
+      
+      window.location.replace(window.location.origin)  
+    }
+    catch(e){
+      console.error(e.message)
+    }
   }
 
   return { getToken, signIn }
