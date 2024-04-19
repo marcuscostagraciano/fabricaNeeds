@@ -1,6 +1,8 @@
-from rest_framework import generics
-from .models import History
-from .serializers import HistorySerializer
+from rest_framework.viewsets import ModelViewSet
+
+from FabricaNeeds.models import History
+from FabricaNeeds.serializers import HistorySerializer
+
 
 class HistoryViewSet(ModelViewSet):
     queryset = History.objects.all()

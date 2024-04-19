@@ -8,12 +8,16 @@ from rest_framework_simplejwt.views import (
     TokenRefreshView,
 )
 
-from FabricaNeeds.views import ItemViewSet
-from FabricaNeeds.views import BalanceViewSet
+from FabricaNeeds.views import (
+    BalanceViewSet,
+    ItemViewSet,
+    HistoryViewSet
+)
 
 router = DefaultRouter()
-router.register(r"items", ItemViewSet)
 router.register(r"balance", BalanceViewSet)
+router.register(r"items", ItemViewSet)
+router.register(r"history", HistoryViewSet)
 
 urlpatterns = [
     path("admin/", admin.site.urls),
