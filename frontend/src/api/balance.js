@@ -1,8 +1,16 @@
 import axios from "axios";
 
+import { useAuthStore } from '@/stores/authStore';
+
+const authStore = useAuthStore()
+const token = await authStore.getToken()
+const config = {
+    headers: {Authorization: `Bearer ${token}`,},
+}
+
 export default class BalanceApi {
     async getBalance() {
-        const { data } = await axios.get(`/balance/`)
+        const { data } = await axios.get(`/balance/`, config)
         return data
     }
     //async createItem(item) {
