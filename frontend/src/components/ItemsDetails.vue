@@ -6,7 +6,7 @@ defineProps({
 })
 
 const itemStore = useItemStore()
-itemStore.getItems()
+
 </script>
 
 <template>
