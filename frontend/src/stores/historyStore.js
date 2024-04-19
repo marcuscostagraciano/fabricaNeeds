@@ -18,5 +18,7 @@ export const useHistoryStore = defineStore('history', () => {
 
     getHistory()
 
-    return { getHistory }
+    const registeredHistory = computed(() => (history.value))
+
+    return { getHistory, registeredHistory }
 })
