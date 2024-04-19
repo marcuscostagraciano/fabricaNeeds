@@ -17,4 +17,8 @@ export default class ItemsApi {
         const { data } = await axios.patch(`/items/${item_id}/`, new_status)
         return data.results
     }
+    async getItemById(id) {
+        const { data } = await axios.get(`/items/${id}/`)
+        return data
+    }
 }
