@@ -4,12 +4,12 @@ import { useAuthStore } from '@/stores/authStore';
 
 const authStore = useAuthStore()
 const token = await authStore.getToken()
+const config = {
+    headers: {Authorization: `Bearer ${token}`,},
+}
 
 export default class BalanceApi {
     async getBalance() {
-        const config = {
-            headers: {Authorization: `Bearer ${token}`,},
-        }
         const { data } = await axios.get(`/balance/`, config)
         return data
     }
