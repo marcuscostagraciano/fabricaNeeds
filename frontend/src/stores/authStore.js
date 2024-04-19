@@ -8,16 +8,16 @@ export const useAuthStore = defineStore('auth', () => {
   const accessTokenAgeInSeconds = 3 * 60 * 60
   const refreshTokenAgeInSeconds = 24 * 60 * 60
 
-  function registerCookies(token){
+  function registerCookies(token) {
     document.cookie = `access=${token.access};max-age=${accessTokenAgeInSeconds};path=/`
     document.cookie = `refresh=${token.refresh};max-age=${refreshTokenAgeInSeconds};path=/`
   }
 
-  function registerAccessCookie(access_token){
+  function registerAccessCookie(access_token) {
     document.cookie = `access=${access_token};max-age=${accessTokenAgeInSeconds};path=/`
   }
 
-  function getCookies(){
+  function getCookies() {
     let result_access;
     let result_refresh;
     return {
@@ -26,31 +26,42 @@ export const useAuthStore = defineStore('auth', () => {
     };
   }
 
-  async function getToken(user_info) {
+  async function getToken() {
     try{
       let token = getCookies()
 
       if(token.access != null){
-        return token
+        return token.access
       }
 
       if(token.refresh != null){
         token.access = await authApi.refreshAccessToken(token.refresh)
         registerAccessCookie(token.access)
-        return token
+        return token.access
       }
 
-      token = await authApi.getToken({
-        "username": user_info.email,
-        "password": user_info.password
-      })
-      registerCookies(token)
-      return token
+      window.location.replace(`${window.location.origin}/signin`)
+      return null
     }
     catch(e){
       console.error(e.message)
     }
   }
 
-  return { getToken }
+  async function signIn(user_info) {
+    try{
+      const token = await authApi.getToken({
+        "username": user_info.user,
+        "password": user_info.password
+      })
+      registerCookies(token)
+      
+      window.location.replace(window.location.origin)  
+    }
+    catch(e){
+      console.error(e.message)
+    }
+  }
+
+  return { getToken, signIn }
 })
