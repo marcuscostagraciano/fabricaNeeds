@@ -34,16 +34,13 @@ export const useItemStore = defineStore('item', () => {
     }
 
     async function toggleActive(id) {
-        // const selected_item = items.value.filter(item => (item.id == id))
         items.value[id - 1].active = !items.value[id - 1].active
 
         itemsApi.toggleActive(id, { "active": items.value[id - 1].active })
     }
 
-    // async function deleteItem(name) {
-    //     items.value = items.value.filter(item => (item.name !== name))
-    //     return await itemsApi.deleteItem(name)
-    // }
+    // Initial data fetch (called immediately after the store is initialized to fetch data)
+    getItems()
 
     const registeredItems = computed(() => { return items.value })
     const activeItems = computed(() => (items.value.filter(item => (item.active))))
