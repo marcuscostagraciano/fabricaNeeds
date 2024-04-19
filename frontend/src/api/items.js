@@ -5,7 +5,7 @@ import { useAuthStore } from '@/stores/authStore';
 const authStore = useAuthStore()
 const token = await authStore.getToken()
 const config = {
-    headers: {Authorization: `Bearer ${token}`,},
+    headers: { Authorization: `Bearer ${token}`, },
 }
 
 export default class ItemsApi {
