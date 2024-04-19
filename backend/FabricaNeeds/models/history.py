@@ -2,6 +2,7 @@ from django.db import models
 from FabricaNeeds.models import Item
 from django.contrib.auth.models import User
 
+
 class History(models.Model):
     date = models.DateTimeField(blank=False)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
