@@ -21,14 +21,27 @@ export const useHistoryStore = defineStore('history', () => {
     getHistory()
 
     const registeredHistory = computed(() => (history.value))
-    const formatedHistory = computed(() =>
-        history.value.map(entry => ({
-            date: entry.date,
-            user: entry.user,
-            item: itemStore.getItemById(entry.id),
-            justification: entry.justification,
-        }))
-    )
+    const formattedHistory = computed(() =>
+        history.value.map(entry => {
+            const date = new Date(entry.date)
+            // Addition of leading 0, if hour or minute only have 1 digit 
+            const hour = String(date.getHours()).padStart(2, "0")
+            const minutes = String(date.getMinutes()).padStart(2, "0")
 
-    return { registeredHistory, formatedHistory }
+            return {
+                datetime: {
+                    day: date.getDate(),
+                    // This goes from 0 to 11
+                    month: date.getMonth() + 1,
+                    hour: hour,
+                    minutes: minutes,
+                },
+                user: entry.user,
+                item: itemStore.getItemById(entry.id),
+                justification: entry.justification,
+            }
+        })
+    );
+
+    return { registeredHistory, formattedHistory }
 })
