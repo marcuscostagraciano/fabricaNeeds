@@ -1,5 +1,5 @@
 <script setup>
-import { computed, reactive, ref } from 'vue';
+import { computed, reactive, ref, onMounted } from 'vue';
 
 import { passwordLengthRule } from '@/utils/formValidationRules';
 
@@ -11,6 +11,10 @@ const form = ref()
 const form_data = reactive({
     user: 'teste',
     password: 'senha.123',
+})
+
+onMounted(async () => {
+    await authStore.clearCookies()
 })
 
 const isFormValid = computed(() => {
