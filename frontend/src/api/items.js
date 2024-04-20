@@ -3,10 +3,8 @@ import axios from "axios";
 import { useAuthStore } from '@/stores/authStore';
 
 const authStore = useAuthStore()
-const token = await authStore.getToken()
-const config = {
-    headers: { Authorization: `Bearer ${token}`, },
-}
+authStore.getToken()
+const config = authStore.auth_token
 
 export default class ItemsApi {
     async getItems() {
