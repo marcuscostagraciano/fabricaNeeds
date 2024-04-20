@@ -45,7 +45,7 @@ export const useItemStore = defineStore('item', () => {
     const registeredItems = computed(() => { return items.value })
     const activeItems = computed(() => (items.value.filter(item => (item.active))))
     const inactiveItems = computed(() => (items.value.filter(item => (!item.active))))
-    const lastItem = computed(() => items.value[(items.value.length) - 1])
+    const lastItem = computed(() => items.value[(items.value.length) - 1 ?? 0])
     const getItemById = (id) => (items.value[id - 1])
 
     return { getItems, createItem, toggleActive, registeredItems, activeItems, inactiveItems, getItemById }
