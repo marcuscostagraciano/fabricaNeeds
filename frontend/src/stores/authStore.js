@@ -1,4 +1,4 @@
-import { ref } from 'vue';
+import { computed, ref } from 'vue';
 import { defineStore } from 'pinia'
 
 import AuthApi from '@/api/auth'
@@ -7,6 +7,7 @@ export const useAuthStore = defineStore('auth', () => {
   const authApi = new AuthApi()
   const accessTokenAgeInSeconds = 3 * 60 * 60
   const refreshTokenAgeInSeconds = 24 * 60 * 60
+  const user_token = ref()
 
   function registerCookies(token) {
     document.cookie = `access=${token.access};max-age=${accessTokenAgeInSeconds};path=/`
@@ -27,41 +28,46 @@ export const useAuthStore = defineStore('auth', () => {
   }
 
   async function getToken() {
-    try{
+    try {
       let token = getCookies()
 
-      if(token.access != null){
+      if (token.access != null) {
+        user_token.value = token.access
         return token.access
       }
 
-      if(token.refresh != null){
+      if (token.refresh != null) {
         token.access = await authApi.refreshAccessToken(token.refresh)
         registerAccessCookie(token.access)
+        user_token.value = token.access
         return token.access
       }
 
       window.location.replace(`${window.location.origin}/signin`)
       return null
     }
-    catch(e){
+    catch (e) {
       console.error(e.message)
     }
   }
 
   async function signIn(user_info) {
-    try{
+    try {
       const token = await authApi.getToken({
         "username": user_info.user,
         "password": user_info.password
       })
       registerCookies(token)
-      
-      window.location.replace(window.location.origin)  
+
+      window.location.replace(window.location.origin)
     }
-    catch(e){
+    catch (e) {
       console.error(e.message)
     }
   }
 
-  return { getToken, signIn }
+  const auth_token = computed(() => ({
+    headers: { Authorization: `Bearer ${user_token.value}`, },
+  }))
+  return { getToken, signIn, auth_token }
 })
