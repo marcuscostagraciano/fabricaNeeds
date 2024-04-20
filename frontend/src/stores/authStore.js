@@ -26,8 +26,13 @@ export const useAuthStore = defineStore('auth', () => {
     };
   }
 
+  async function clearCookies(){
+    document.cookie = `access=;expires=Thu, 01 Jan 1970 00:00:00 UTC;path=/`
+    document.cookie = `refresh=;expires=Thu, 01 Jan 1970 00:00:00 UTC;path=/`
+  }
+
   async function getToken() {
-    try{
+    try {
       let token = getCookies()
 
       if(token.access != null){
@@ -43,13 +48,13 @@ export const useAuthStore = defineStore('auth', () => {
       window.location.replace(`${window.location.origin}/signin`)
       return null
     }
-    catch(e){
+    catch(e) {
       console.error(e.message)
     }
   }
 
   async function signIn(user_info) {
-    try{
+    try {
       const token = await authApi.getToken({
         "username": user_info.user,
         "password": user_info.password
@@ -58,10 +63,10 @@ export const useAuthStore = defineStore('auth', () => {
       
       window.location.replace(window.location.origin)  
     }
-    catch(e){
+    catch(e) {
       console.error(e.message)
     }
   }
 
-  return { getToken, signIn }
+  return { clearCookies, getToken, signIn }
 })
