@@ -23,9 +23,10 @@ export const useHistoryStore = defineStore('history', () => {
     const registeredHistory = computed(() => (history.value))
     const formatedHistory = computed(() =>
         history.value.map(entry => ({
-            data: entry.date,
+            date: entry.date,
             user: entry.user,
             item: itemStore.getItemById(entry.id),
+            justification: entry.justification,
         }))
     )
 
