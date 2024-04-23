@@ -10,7 +10,7 @@
         "path": "/history",
         "name": "history",
         "pt_name": "histórico",
-        "component": "HomeView",
+        "component": "HistoryView",
         "show": true
     },
     {
