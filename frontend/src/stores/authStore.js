@@ -7,10 +7,12 @@ export const useAuthStore = defineStore('auth', () => {
   const authApi = new AuthApi()
   const accessTokenAgeInSeconds = 3 * 60 * 60
   const refreshTokenAgeInSeconds = 24 * 60 * 60
+  const usernameAgeInSeconds = 24 * 60 * 60
 
-  function registerCookies(token) {
-    document.cookie = `access=${token.access};max-age=${accessTokenAgeInSeconds};path=/`
-    document.cookie = `refresh=${token.refresh};max-age=${refreshTokenAgeInSeconds};path=/`
+  function registerCookies(access_token, refresh_token, username) {
+    document.cookie = `access=${access_token};max-age=${accessTokenAgeInSeconds};path=/`
+    document.cookie = `refresh=${refresh_token};max-age=${refreshTokenAgeInSeconds};path=/`
+    document.cookie = `username=${username};max-age=${usernameAgeInSeconds};path=/`
   }
 
   function registerAccessCookie(access_token) {
@@ -29,20 +31,21 @@ export const useAuthStore = defineStore('auth', () => {
   async function clearCookies(){
     document.cookie = `access=;expires=Thu, 01 Jan 1970 00:00:00 UTC;path=/`
     document.cookie = `refresh=;expires=Thu, 01 Jan 1970 00:00:00 UTC;path=/`
+    document.cookie = `username=;expires=Thu, 01 Jan 1970 00:00:00 UTC;path=/`
   }
 
   async function getToken() {
     try {
-      let token = getCookies()
+      let {access: access_token, refresh: refresh_token} = getCookies()
 
-      if(token.access != null){
-        return token.access
+      if(access_token != null){
+        return access_token
       }
 
-      if(token.refresh != null){
-        token.access = await authApi.refreshAccessToken(token.refresh)
-        registerAccessCookie(token.access)
-        return token.access
+      if(refresh_token != null){
+        access_token = await authApi.refreshAccessToken(refresh_token)
+        registerAccessCookie(access_token)
+        return access_token
       }
 
       window.location.replace(`${window.location.origin}/signin`)
@@ -59,9 +62,9 @@ export const useAuthStore = defineStore('auth', () => {
         "username": user_info.user,
         "password": user_info.password
       })
-      registerCookies(token)
+      registerCookies(token.access, token.refresh, user_info.user)
       
-      window.location.replace(window.location.origin)  
+      window.location.replace(window.location.origin)
     }
     catch(e) {
       console.error(e.message)
