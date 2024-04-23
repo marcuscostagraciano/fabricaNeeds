@@ -28,12 +28,15 @@ export const useHistoryStore = defineStore('history', () => {
         (result_username = new RegExp('(?:^|; )username=([^;]*)').exec(document.cookie)) ? (result_username[1]) : null
         result_username = result_username[1]
 
-        const history = {
+        const additional_info = {
+            id: lastHistory.value != undefined ? lastHistory.value.id + 1 : 1,
+            date: new Date().toISOString(),
             user: history_info.user,
             item: history_info.item,
-            justification: `${result_username}`,
+            justification: `${result_username} WIP`,
         }
-        console.log(history);
+        console.log(additional_info);
+        history.value.push(additional_info)
         // await historyApi.createHistory(history)
     }
 
@@ -61,5 +64,7 @@ export const useHistoryStore = defineStore('history', () => {
             }
         })
     );
+    const lastHistory = computed(() => history.value[(history.value.length) - 1])
+
     return { createHistory, registeredHistory, formattedHistory }
 })
