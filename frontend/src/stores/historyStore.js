@@ -18,6 +18,25 @@ export const useHistoryStore = defineStore('history', () => {
         return history.value
     }
 
+    async function createHistory(history_info) {
+        // We'll need for this recipe:
+        //     - the user id;
+        //     - item id;
+        //     - justification ([actor] [action: adicionou R$/comprou] [item/value]).
+        //         - ex: Marcus adicionou R$ 4
+        let result_username
+        (result_username = new RegExp('(?:^|; )username=([^;]*)').exec(document.cookie)) ? (result_username[1]) : null
+        result_username = result_username[1]
+
+        const history = {
+            user: history_info.user,
+            item: history_info.item,
+            justification: `${result_username}`,
+        }
+        console.log(history);
+        // await historyApi.createHistory(history)
+    }
+
     getHistory()
 
     const registeredHistory = computed(() => (history.value))
@@ -42,6 +61,5 @@ export const useHistoryStore = defineStore('history', () => {
             }
         })
     );
-
-    return { registeredHistory, formattedHistory }
+    return { createHistory, registeredHistory, formattedHistory }
 })
