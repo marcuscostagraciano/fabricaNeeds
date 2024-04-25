@@ -1,3 +1,3 @@
 from .balance import Balance
 from .item import Item
-from .history import History
+from .history import History, ItemsHistory
