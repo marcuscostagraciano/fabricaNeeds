@@ -1,19 +1,25 @@
 <script setup>
 import { computed, reactive, ref } from 'vue';
+
 import { useItemStore } from '@/stores/itemStore';
 import { useBalanceStore } from '@/stores/balanceStore';
+
 import ItemsDetails from '@/components/ItemsDetails.vue';
+import AddItemsToList from '@/components/AddItemsToList.vue';
 
 const itemStore = useItemStore()
 itemStore.getItems()
 
 const balanceStore = useBalanceStore()
 balanceStore.getBalance()
+
 const form_balance = ref()
 const form_data_balance = reactive({
     id: 0,
     value: 0,
 })
+
+const btn = ref(null)
 
 const isFormValid = computed(() => {
     return requiredRule(form_data.item_name) == true;
@@ -28,14 +34,16 @@ const isFormValid = computed(() => {
                 <div class="balanceValue">
                     <h1 v-if="balanceStore.loading">Carregando itens</h1>
                     <h3 v-else class="">R$ {{ balanceStore.registeredBalance[0].value.toFixed(2) }}</h3>
-                    <v-btn class="d-flex align-self-end h-auto w-auto pa-3" icon="mdi-plus" size="x-large"></v-btn>
+                    <v-btn class="d-flex align-self-end h-auto w-auto pa-3" icon="mdi-plus" size="x-large"
+                        ref="btn"></v-btn>
                 </div>
             </div>
             <hr>
             <div class="itemsList">
-                <ItemsDetails item_selection="active" class="item"/>            
+                <ItemsDetails item_selection="active" class="item" />
             </div>
         </div>
+        <AddItemsToList :activator="btn" />
     </div>
 </template>
 
@@ -46,51 +54,50 @@ const isFormValid = computed(() => {
     justify-content: center;
 }
 
-.container{
+.container {
     min-width: 70%;
     flex-direction: column;
     align-items: center;
 }
 
-.balance{
-    display:flex;
+.balance {
+    display: flex;
     margin-left: 8%;
     margin-bottom: 2%;
     justify-content: space-between;
 }
 
-.balance h1{
+.balance h1 {
     align-self: center;
 }
 
-.balanceValue{
+.balanceValue {
     width: 25%;
     display: flex;
     align-items: center;
 }
 
-.balanceValue h3{
+.balanceValue h3 {
     margin-right: 8%;
 }
 
-.balance .v-btn{
+.balance .v-btn {
     background-color: rgb(211, 211, 211);
     align-self: center;
 }
 
-.itemsList{
+.itemsList {
     margin-top: 2%;
     display: flex;
     flex-direction: column;
-    align-items:center;
+    align-items: center;
 }
 
-.item td{
+.item td {
     border: 1px solid black;
 }
 
-.inactive{
+.inactive {
     opacity: 50%;
 }
-
 </style>
