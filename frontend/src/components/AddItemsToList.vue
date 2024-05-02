@@ -8,9 +8,15 @@ const itemStore = useItemStore()
 const itemsToBeActived = ref([])
 
 const addToList = (item) => {
-    console.log("item: ", item)
     itemsToBeActived.value.push(item)
-    console.log("itemsToBeActived: ", itemsToBeActived.value)
+}
+const removeFromList = (selected_item) => {
+    itemsToBeActived.value = itemsToBeActived.value.filter(item => item !== selected_item);
+}
+const isInList = (item) => (itemsToBeActived.value.includes(item))
+
+const cancelAddition = (controlVar) => {
+    controlVar.value = false
 }
 
 </script>
@@ -22,14 +28,15 @@ const addToList = (item) => {
                 <v-list>
                     <v-list-item v-for="item in itemStore.inactiveItems" :key="item.id">
                         {{ item.name }}
-                        <v-icon @click="addToList(item)">mdi-cart-plus</v-icon>
-                        <v-icon @click="removeFromList(item)">mdi-cart-remove</v-icon>
+                        <v-icon v-if="!isInList(item)" @click="addToList(item)">mdi-cart-plus</v-icon>
+                        <v-icon v-else @click="removeFromList(item)">mdi-cart-remove</v-icon>
                     </v-list-item>
                 </v-list>
 
                 <template v-slot:actions>
-                    <v-btn class="ma-auto" text="Cancelar" @click="isActive.value = false"></v-btn>
-                    <v-btn class="ma-auto" text="Adicionar" @click="isActive.value = false"></v-btn>
+                    <v-btn class="ma-auto" @click="cancelAddition(isActive)">Cancelar</v-btn>
+                    <v-btn class="ma-auto" :disabled="itemsToBeActived.length == 0"
+                        @click="isActive.value = false">Adicionar</v-btn>
                 </template>
             </v-card>
         </template>
