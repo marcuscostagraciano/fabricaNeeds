@@ -60,10 +60,14 @@ export const useHistoryStore = defineStore('history', () => {
                 },
                 // Get only the user usernama (since we user first name is not registered)
                 user: entry.user.username,
-                // item: itemStore.getItemById(entry.id),
 
-                // Get a list of items names
-                items: entry.items.map(item => (itemStore.getItemById(item.item).name)),
+                // Get a list of items names and prices
+                items: entry.items.map(item => (
+                    {
+                        name: itemStore.getItemById(item.item).name,
+                        price: item.price
+                    })),
+
                 justification: entry.justification,
             }
         })
