@@ -25,13 +25,15 @@ const cancelAddition = (controlVar) => {
     <v-dialog activator="btn" max-width="340" persistent>
         <template v-slot:default="{ isActive }">
             <v-card prepend-icon="mdi-cart-plus" title="Adicionar itens a lista">
-                <v-list>
-                    <v-list-item v-for="item in itemStore.inactiveItems" :key="item.id">
-                        {{ item.name }}
-                        <v-icon v-if="!isInList(item)" @click="addToList(item)">mdi-cart-plus</v-icon>
-                        <v-icon v-else @click="removeFromList(item)">mdi-cart-remove</v-icon>
-                    </v-list-item>
-                </v-list>
+                <table>
+                    <tr v-for="item in itemStore.inactiveItems" :key="item.id" class="item">
+                        <td>{{ item.name }}</td>
+                        <td>
+                            <v-icon v-if="!isInList(item)" @click="addToList(item)">mdi-cart-plus</v-icon>
+                            <v-icon v-else @click="removeFromList(item)">mdi-cart-remove</v-icon>
+                        </td>
+                    </tr>
+                </table>
 
                 <template v-slot:actions>
                     <v-btn class="ma-auto" @click="cancelAddition(isActive)">Cancelar</v-btn>
@@ -44,4 +46,8 @@ const cancelAddition = (controlVar) => {
 
 </template>
 
-<style scoped></style>
+<style scoped>
+.item {
+    text-align: center;
+}
+</style>
