@@ -6,17 +6,19 @@ from django.contrib.auth.models import User
 from FabricaNeeds.models import History, ItemsHistory
 
 
-class HistorySerializer(ModelSerializer):
-    class Meta:
-        model = History
-        fields = ['id', 'date', 'user', 'items', 'justification']
-        depth = 1
-
-
 class ItemsHistorySerializer(ModelSerializer):
     class Meta:
         model = ItemsHistory
         fields = ('item', 'price',)
+
+
+class HistorySerializer(ModelSerializer):
+    items = ItemsHistorySerializer(many=True)
+    
+    class Meta:
+        model = History
+        fields = ['id', 'date', 'user', 'items', 'justification']
+        depth = 1
 
 
 class CriarEditarHistorySerializer(ModelSerializer):
