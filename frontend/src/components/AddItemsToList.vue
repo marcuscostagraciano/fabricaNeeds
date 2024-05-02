@@ -19,6 +19,12 @@ const cancelAddition = (controlVar) => {
     controlVar.value = false
     itemsToBeActived.value = []
 }
+const toggleListedItems = async (controlVar) => {
+    for (const item of itemsToBeActived.value) {
+        await itemStore.toggleActive(item.id)
+    }
+    cancelAddition(controlVar)
+}
 
 </script>
 
@@ -39,7 +45,7 @@ const cancelAddition = (controlVar) => {
                 <template v-slot:actions>
                     <v-btn class="ma-auto" @click="cancelAddition(isActive)">Cancelar</v-btn>
                     <v-btn class="ma-auto" :disabled="itemsToBeActived.length == 0"
-                        @click="isActive.value = false">Adicionar</v-btn>
+                        @click="toggleListedItems(isActive)">Adicionar</v-btn>
                 </template>
             </v-card>
         </template>
