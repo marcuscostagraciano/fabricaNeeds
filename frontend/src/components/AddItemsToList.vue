@@ -17,6 +17,7 @@ const isInList = (item) => (itemsToBeActived.value.includes(item))
 
 const cancelAddition = (controlVar) => {
     controlVar.value = false
+    itemsToBeActived.value = []
 }
 
 </script>
@@ -43,7 +44,6 @@ const cancelAddition = (controlVar) => {
             </v-card>
         </template>
     </v-dialog>
-
 </template>
 
 <style scoped>
