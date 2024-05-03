@@ -11,35 +11,67 @@
 - [Justificativa](#justificativa)
 - [Propósito](#propósito)
 - [Detalhes do Sistema](#detalhes-do-sistema)
+  - [Diagramas](#diagramas)
+  - [Mockups](#mockups)
 - [Funcionamento](#funcionamento)
 <!-- - [Instalação](#instalação) -->
 
-### Justificativa
+## Justificativa
 
 Este projeto tem como objetivo abranger e revisar o conhecimento sobre Django, Git e Vue. Além disso, deverá servir como um desafio, para que possamos ampliar e consolidar nossas habilidades.
 
-### Propósito
+## Propósito
 
 WIP
 
-### Detalhes do Sistema
+## Detalhes do Sistema:
+
+Esta seção apresentará os detalhes em relação à engenharia do projeto, como diagramas e mockups.
+
+### Diagramas:
 
 <div align="center">
 <h4>Figura 1: Diagrama de Casos de Uso</h4>
-<img src="docs/caso_de_uso.jpg" alt="Diagrama de Casos de Uso">
+<img src="docs/caso_de_uso.jpg" alt="Diagrama de Casos de Uso" width=768px>
 
 <br>
 
 <h4>Figura 2: Diagrama de Classes</h4>
-<img src="docs/diagrama_de_classes.jpg" alt="Diagrama de Classes">
+<img src="docs/diagrama_de_classes.jpg" alt="Diagrama de Classes" width=512px>
+</div>
 
-<br>
+### Mockups:
 
+<div align="center">
 <h4>Figura 3: Paleta de Cores</h4>
 <img src="docs/color_palette.png" alt="Paleta de Cores" width=512px>
 
+<br>
+
+<h4>Figura 4: Página Inicial</h4>
+<img src="docs/mockups/home.png" alt="Página inicial" width=512px>
+
+<br>
+
+<h4>Figura 5: Página de Histórico</h4>
+<img src="docs/mockups/history.png" alt="Página de Histórico" width=512px>
+
+<br>
+
+<h4>Figura 6: Página de Cadastro</h4>
+<img src="docs/mockups/signup.png" alt="Página de Cadastro" width=512px>
+
+<br>
+
+<h4>Figura 7: Página de Login</h4>
+<img src="docs/mockups/signin.png" alt="Página de Login" width=512px>
+
+<br>
+
+<h4>Figuras 8: Componentes do Sistema (Barra de navegação lateral e Compra de itens)</h4>
+<img src="docs/mockups/components.png" alt="Componentes do Sistema" height=448>
 </div>
 
-### Funcionamento
+## Funcionamento
 
 <!-- ### Instalação -->
