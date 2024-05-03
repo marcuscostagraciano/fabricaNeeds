@@ -24,8 +24,6 @@ defineComponent({
 </template>
 
 <style scoped>
-@import "@/assets/main.css";
-
 #sidebar {
     background-color: var(--palette-gray);
 }
