@@ -19,25 +19,28 @@ export const useHistoryStore = defineStore('history', () => {
     }
 
     async function createHistory(history_info) {
-        // We'll need for this recipe:
+        // What we will need for this recipe:
         //     - the user id;
         //     - item id;
         //     - justification ([actor] [action: adicionou R$/comprou] [item/value]).
         //         - ex: Marcus adicionou R$ 4
-        let result_username
-        (result_username = new RegExp('(?:^|; )username=([^;]*)').exec(document.cookie)) ? (result_username[1]) : null
-        result_username = result_username[1]
+        let result_username = (new RegExp('(?:^|; )username=([^;]*)').exec(document.cookie)) ? (new RegExp('(?:^|; )username=([^;]*)').exec(document.cookie)[1]) : null;
 
+        // This info will be added to the local variable
         const additional_info = {
-            id: lastHistory.value != undefined ? lastHistory.value.id + 1 : 1,
             date: new Date().toISOString(),
-            user: history_info.user,
-            item: history_info.item,
-            justification: `${result_username} WIP`,
+            user: result_username,
+            items: history_info.items,
+            justification: `${result_username} ${history_info.action} ${history_info.items.map(item => item.name).join(", ")}`,
         }
-        console.log(additional_info);
-        history.value.push(additional_info)
-        // await historyApi.createHistory(history)
+
+        try {
+            // await historyApi.createHistory()
+            history.value.push(additional_info)
+        }
+        catch (err) {
+            console.error(err);
+        }
     }
 
     getHistory()
@@ -58,8 +61,10 @@ export const useHistoryStore = defineStore('history', () => {
                     hour: hour,
                     minutes: minutes,
                 },
-                // Get only the user usernama (since we user first name is not registered)
-                user: entry.user.username,
+                // Get only the user username (since the user first name is not registered)
+                // "entry.user.username" used to get the username from backend response
+                // "entry.use" used to get the username from history creation response
+                user: entry.user.username ? entry.user.username : entry.user,
 
                 // Get a list of items names and prices
                 items: entry.items.map(item => (
