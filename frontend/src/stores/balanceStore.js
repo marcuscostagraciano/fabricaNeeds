@@ -16,7 +16,17 @@ export const useBalanceStore = defineStore('balance', () => {
         return balance.value
     }
 
+    const updateBalance = async (newValue) => {
+        try {
+            await balanceApi.updateBalance({ value: newValue })
+            balance.value += newValue
+        }
+        catch (err) {
+            console.error(err);
+        }
+    }
+
     const registeredBalance = computed(() => { return balance.value })
 
-    return { getBalance, registeredBalance }
+    return { getBalance, updateBalance, registeredBalance }
 })

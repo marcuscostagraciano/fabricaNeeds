@@ -11,6 +11,10 @@ export default class BalanceApi {
         const { data } = await axios.get(`/balance/1/`, config)
         return data
     }
+    async updateBalance(value) {
+        const { data } = await axios.put(`/balance/1/`, value, config)
+        return data.results
+    }
     //async createItem(item) {
     //    const { data } = await axios.post(`/items/`, item)
     //    return data.results
