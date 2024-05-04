@@ -44,9 +44,16 @@ export const useItemStore = defineStore('item', () => {
 
     const registeredItems = computed(() => { return items.value })
     const activeItems = computed(() => (items.value.filter(item => (item.active))))
+    // Filtes active items by update date
+    const activeItemsByRecentUpdate = computed(() =>
+        items.value.filter(item => item.active)
+            .sort((a, b) => new Date(b.last_update) - new Date(a.last_update)))
     const inactiveItems = computed(() => (items.value.filter(item => (!item.active))))
     const lastItem = computed(() => items.value[(items.value.length) - 1])
     const getItemById = (id) => (items.value[id - 1])
 
-    return { getItems, createItem, toggleActive, registeredItems, activeItems, inactiveItems, getItemById }
+    return {
+        getItems, createItem, toggleActive, registeredItems, activeItems,
+        activeItemsByRecentUpdate, inactiveItems, getItemById
+    }
 })
