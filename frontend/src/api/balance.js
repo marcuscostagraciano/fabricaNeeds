@@ -8,7 +8,7 @@ const config = { headers: { Authorization: `Bearer ${token}`, }, }
 
 export default class BalanceApi {
     async getBalance() {
-        const { data } = await axios.get(`/balance/`, config)
+        const { data } = await axios.get(`/balance/1/`, config)
         return data
     }
     //async createItem(item) {
