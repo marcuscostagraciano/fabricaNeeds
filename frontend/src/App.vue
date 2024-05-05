@@ -23,6 +23,4 @@ const toggleDrawer = () => { showSideBar.value = !showSideBar.value }
   </v-app>
 </template>
 
-<style>
-@import "@/assets/main.css";
-</style>
+<style></style>

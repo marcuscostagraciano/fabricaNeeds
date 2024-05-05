@@ -27,9 +27,9 @@ const validInput = computed(
 <template>
     <v-dialog activator="btn" max-width="340" persistent>
         <template v-slot:default="{ isActive }">
-            <v-card prepend-icon="mdi-pig" title="Adicionar doação">
+            <v-card prepend-icon="mdi-piggy-bank-outline" title="Adicionar doação" class="card">
                 <v-text-field label="Valor" :rules="positiveBalanceRule" v-model="valueToBeAdded" type="number"
-                    class="px-3 pt-3" />
+                    class="px-3 pt-3" min="0" />
 
 
                 <template v-slot:actions>
@@ -41,4 +41,6 @@ const validInput = computed(
     </v-dialog>
 </template>
 
-<style scoped></style>
+<style scoped>
+@import '@/assets/css/addcards.css';
+</style>

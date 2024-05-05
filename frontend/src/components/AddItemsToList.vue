@@ -31,7 +31,7 @@ const toggleListedItems = async (controlVar) => {
 <template>
     <v-dialog activator="btn" max-width="340" persistent>
         <template v-slot:default="{ isActive }">
-            <v-card prepend-icon="mdi-cart-plus" title="Adicionar itens a lista">
+            <v-card prepend-icon="mdi-invoice-list-outline" title="Adicionar itens a lista" class="card">
                 <table>
                     <tr v-for="item in itemStore.inactiveItems" :key="item.id" class="item">
                         <td>{{ item.name }}</td>
@@ -53,6 +53,8 @@ const toggleListedItems = async (controlVar) => {
 </template>
 
 <style scoped>
+@import '@/assets/css/addcards.css';
+
 .item {
     text-align: center;
 }
