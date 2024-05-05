@@ -42,6 +42,7 @@ export const useItemStore = defineStore('item', () => {
     const toggleActive = async (id) => {
         // "id - 1" is used to update the list locally, since it starts at 0
         items.value[id - 1].active = !items.value[id - 1].active
+        items.value[id - 1].last_update = new Date()
         itemsApi.toggleActive(id, { "active": items.value[id - 1].active })
     }
 
