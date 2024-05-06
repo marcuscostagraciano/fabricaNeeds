@@ -36,7 +36,6 @@ export const useBalanceStore = defineStore('balance', () => {
     }
 
     const registeredBalance = computed(() => { return balance.value })
-    const fixedBalance = computed(() => { return balance.value.toFixed(2) })
 
-    return { getBalance, updateBalance, registeredBalance, fixedBalance }
+    return { getBalance, updateBalance, registeredBalance }
 })
