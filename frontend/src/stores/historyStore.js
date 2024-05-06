@@ -69,7 +69,7 @@ export const useHistoryStore = defineStore('history', () => {
                 // Get a list of items names and prices
                 items: entry.items.map(item => (
                     {
-                        name: itemStore.getItemById(item.item).name,
+                        name: item.name ?? itemStore.getItemById(item.item).name,
                         price: item.price
                     })),
 
