@@ -26,6 +26,7 @@ class HistorySerializer(ModelSerializer):
 class CriarEditarHistorySerializer(ModelSerializer):
     items = ItemsHistorySerializer(many=True, required=False)
     date = serializers.DateTimeField(read_only=True)
+    user = serializers.HiddenField(default=serializers.CurrentUserDefault())
 
     def create(self, validated_data):
         items = validated_data.pop('items')
