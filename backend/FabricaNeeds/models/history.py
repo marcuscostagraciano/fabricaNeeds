@@ -7,6 +7,7 @@ class History(models.Model):
     date = models.DateTimeField(auto_now=True) 
     user = models.ForeignKey(User, on_delete=models.PROTECT)
     justification = models.CharField(max_length=255, blank=True)
+    value = models.DecimalField(max_digits=7, decimal_places=2, default=0)
 
     def __str__(self) -> str:
         return f"{self.date} - {self.user} - {self.items}"
