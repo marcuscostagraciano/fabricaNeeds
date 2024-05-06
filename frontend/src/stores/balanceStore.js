@@ -17,9 +17,11 @@ export const useBalanceStore = defineStore('balance', () => {
     }
 
     const updateBalance = async (newValue) => {
+        const value = parseFloat(newValue)
+
         try {
-            await balanceApi.updateBalance({ value: newValue })
-            balance.value += parseFloat(newValue)
+            await balanceApi.updateBalance({ value })
+            balance.value += parseFloat(value)
         }
         catch (err) {
             console.error(err);
@@ -27,6 +29,7 @@ export const useBalanceStore = defineStore('balance', () => {
     }
 
     const registeredBalance = computed(() => { return balance.value })
+    const fixedBalance = computed(() => { return balance.value.toFixed(2) })
 
-    return { getBalance, updateBalance, registeredBalance }
+    return { getBalance, updateBalance, registeredBalance, fixedBalance }
 })
