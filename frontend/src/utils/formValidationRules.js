@@ -19,3 +19,7 @@ export const passwordConfirmationRule = [
     requiredRule,
     (v, pw) => v === pw || "As senhas devem ser iguais."
 ]
+
+export const positiveBalanceRule = [
+    (v) => parseFloat(v) > 0 || 'O valor deve ser um número positivo',
+]

@@ -20,8 +20,6 @@
 </template>
 
 <style scoped>
-@import "@/assets/main.css";
-
 #site-header {
     background-color: var(--palette-gray);
     color: #fff;

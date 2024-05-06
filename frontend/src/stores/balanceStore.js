@@ -6,17 +6,27 @@ import BalanceApi from '@/api/balance';
 export const useBalanceStore = defineStore('balance', () => {
     const balanceApi = new BalanceApi()
 
-    const balance = ref()
+    const balance = ref(0)
     const loading = ref(false)
 
     async function getBalance() {
         loading.value = true
-        balance.value = await balanceApi.getBalance()
+        balance.value = (await balanceApi.getBalance()).value
         loading.value = false
         return balance.value
     }
 
-    const registeredBalance = computed(() => { return  balance.value })
+    const updateBalance = async (newValue) => {
+        try {
+            await balanceApi.updateBalance({ value: newValue })
+            balance.value += parseFloat(newValue)
+        }
+        catch (err) {
+            console.error(err);
+        }
+    }
 
-    return { getBalance, registeredBalance }
+    const registeredBalance = computed(() => { return balance.value })
+
+    return { getBalance, updateBalance, registeredBalance }
 })

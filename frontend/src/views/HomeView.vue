@@ -33,7 +33,7 @@ const isFormValid = computed(() => {
                 <h1 class="">Saldo</h1>
                 <div class="balanceValue">
                     <h1 v-if="balanceStore.loading">Carregando itens</h1>
-                    <h3 v-else class="">R$ {{ balanceStore.registeredBalance[0].value.toFixed(2) }}</h3>
+                    <h3 v-else class="">R$ {{ balanceStore.registeredBalance.toFixed(2) }}</h3>
                     <v-btn class="d-flex align-self-end h-auto w-auto pa-3" icon="mdi-plus" size="x-large"
                         ref="btn"></v-btn>
                 </div>
