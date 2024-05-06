@@ -32,7 +32,8 @@ const buyItems = async (controlVar) => {
             <v-card class="card">
                 <v-card v-for="item in items" :key="item.id" class="items">
                     {{ item.name }}
-                    <v-text-field name="Preço" label="Preço" id="id" v-model="prices[item.id]">R$</v-text-field>
+                    <v-text-field name="Preço" label="Preço" id="id" v-model="prices[item.id]"
+                        type="number">R$</v-text-field>
                 </v-card>
 
                 <template v-slot:actions>
