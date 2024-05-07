@@ -102,5 +102,5 @@ export const useHistoryStore = defineStore('history', () => {
     );
     const lastHistory = computed(() => history.value[(history.value.length) - 1])
 
-    return { createHistory, registeredHistory, formattedHistory }
+    return { getHistory, createHistory, registeredHistory, formattedHistory }
 })

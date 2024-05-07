@@ -4,14 +4,7 @@ import { useHistoryStore } from '@/stores/historyStore';
 import { useBalanceStore } from '@/stores/balanceStore';
 
 const historyStore = useHistoryStore()
-
-const balanceStore = useBalanceStore()
-balanceStore.getBalance()
-const form_balance = ref()
-const form_data_balance = reactive({
-    id: 0,
-    value: 0,
-})
+historyStore.getHistory()
 
 </script>
 
