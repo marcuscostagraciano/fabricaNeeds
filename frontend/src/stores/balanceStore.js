@@ -24,7 +24,7 @@ export const useBalanceStore = defineStore('balance', () => {
 
         try {
             if (value > 0) {
-                // historyStore.createHistory({ value })
+                historyStore.createHistory({ value, items: [] })
             }
             balanceApi.updateBalance({ value })
 

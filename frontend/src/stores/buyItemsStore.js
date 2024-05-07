@@ -11,21 +11,28 @@ export const useBuyItemsStore = defineStore('buyItems', () => {
     const historyStore = useHistoryStore()
 
     const buyItems = async (itemsAndPrices) => {
-        let items = []
-        for (const item_id in itemsAndPrices) {
-            // Works as intended
-            // itemStore.toggleActive(item_id)
+        try {
+            let items = []
 
-            // Works as intended
-            // balanceStore.updateBalance(-itemsAndPrices[item_id])
+            for (const item_id in itemsAndPrices) {
+                console.log("item_id: ", item_id);
+                console.log(`itemsAndPrices[#${item_id}]: `, itemsAndPrices[item_id]);
 
-            items.push(itemStore.getItemById(item_id))
+                items.push({
+                    item: item_id,
+                    price: itemsAndPrices[item_id]
+                })
+
+                await Promise.all([
+                    itemStore.toggleActive(item_id),
+                    balanceStore.updateBalance(-itemsAndPrices[item_id]),
+                    historyStore.createHistory({ value: 0, items })
+                ])
+            }
         }
-        // WIP
-        historyStore.createHistory({
-            items,
-            action: 'comprou'
-        })
+        catch (err) {
+            console.error(err)
+        }
     }
 
     return { buyItems }
