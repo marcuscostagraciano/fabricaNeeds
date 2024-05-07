@@ -1,5 +1,5 @@
 <script setup>
-import { reactive, ref } from 'vue';
+import { ref } from 'vue';
 
 import { useItemStore } from '@/stores/itemStore';
 import { useBuyItemsStore } from '@/stores/buyItemsStore';
@@ -7,6 +7,7 @@ import { useBuyItemsStore } from '@/stores/buyItemsStore';
 const itemStore = useItemStore()
 const buyItemsStore = useBuyItemsStore()
 
+const emit = defineEmits(['submit'])
 defineProps({
     items: Object,
 })
@@ -14,15 +15,16 @@ defineProps({
 // List containing { items; price }
 const prices = ref([])
 
-const cancelAddition = (controlVar) => {
+const closeDialog = (controlVar) => {
     controlVar.value = false
     prices.value = []
 }
-const buyItems = async (controlVar) => {
-    buyItemsStore.buyItems(prices.value)
-    cancelAddition(controlVar)
-}
 
+const buyItems = async (controlVar) => {
+    await buyItemsStore.buyItems(prices.value)
+    closeDialog(controlVar)
+    emit('submit')
+}
 
 </script>
 
@@ -37,7 +39,7 @@ const buyItems = async (controlVar) => {
                 </v-card>
 
                 <template v-slot:actions>
-                    <v-btn class="ma-auto" @click="cancelAddition(isActive)">Cancelar</v-btn>
+                    <v-btn class="ma-auto" @click="closeDialog(isActive)">Cancelar</v-btn>
                     <v-btn class="ma-auto" @click="buyItems(isActive)">Baixa</v-btn>
                 </template>
             </v-card>

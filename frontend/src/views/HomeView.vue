@@ -25,7 +25,7 @@ const addBalanceBtn = ref(null)
 const addItemsToListBtn = ref(null)
 const buyItemsBtn = ref(null)
 
-const selected_items = ref([])
+let selected_items = ref([])
 
 const addToList = (item) => {
     selected_items.value.push(item)
@@ -34,6 +34,11 @@ const removeFromList = (selected_item) => {
     selected_items.value = selected_items.value.filter(item => item !== selected_item);
 }
 const isInList = (item) => (selected_items.value.includes(item))
+
+const clearList = () => {
+    console.log("cleaning list 🧹🧹🧹")
+    selected_items.value = []
+}
 
 </script>
 
@@ -65,16 +70,18 @@ const isInList = (item) => (selected_items.value.includes(item))
                     </tr>
                 </table>
             </div>
-            <div v-if="selected_items.length" class="mt-6 text-right">
+
+            <div class="mt-6 text-right">
                 <h3>Itens selecionados:</h3>
                 <v-chip v-for="item in selected_items">{{ item.name }}</v-chip>
                 <br>
-                <v-btn ref="buyItemsBtn">Dar baixa</v-btn>
+                <v-btn ref="buyItemsBtn" :disabled="!selected_items.length">Dar baixa</v-btn>
             </div>
+
         </div>
         <AddBalance :activator="addBalanceBtn" />
         <AddItemsToList :activator="addItemsToListBtn" />
-        <BuyItemsFromList :activator="buyItemsBtn" :items="selected_items" />
+        <BuyItemsFromList :activator="buyItemsBtn" :items="selected_items" @submit="clearList" />
     </div>
 </template>
 
