@@ -15,9 +15,6 @@ export const useBuyItemsStore = defineStore('buyItems', () => {
             let items = []
 
             for (const item_id in itemsAndPrices) {
-                console.log("item_id: ", item_id);
-                console.log(`itemsAndPrices[#${item_id}]: `, itemsAndPrices[item_id]);
-
                 items.push({
                     item: item_id,
                     price: itemsAndPrices[item_id]
