@@ -35,10 +35,6 @@ const removeFromList = (selected_item) => {
 }
 const isInList = (item) => (selected_items.value.includes(item))
 
-const cancelAddition = () => {
-    selected_items.value = []
-}
-
 </script>
 
 <template>
@@ -53,12 +49,10 @@ const cancelAddition = () => {
                         ref="addBalanceBtn"></v-btn>
                     <v-btn class="d-flex align-self-end h-auto w-auto pa-3" icon="mdi-cart" size="x-large"
                         ref="addItemsToListBtn"></v-btn>
-                    <!-- ref="addItemsToListBtn"></v-btn> -->
                 </div>
             </div>
             <hr>
             <div class="itemsList">
-                <!-- <ItemsDetails item_selection="active" class="item" /> -->
                 <table>
                     <tr v-for="item in itemStore.activeItemsByRecentUpdate" :key="item.id">
                         <td>{{ item.name }}</td>
