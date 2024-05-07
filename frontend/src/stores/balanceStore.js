@@ -14,7 +14,7 @@ export const useBalanceStore = defineStore('balance', () => {
 
     async function getBalance() {
         loading.value = true
-        balance.value = (await balanceApi.getBalance()).value
+        balance.value = parseFloat((await balanceApi.getBalance()).value)
         loading.value = false
         return balance.value
     }
@@ -24,7 +24,7 @@ export const useBalanceStore = defineStore('balance', () => {
 
         try {
             if (value > 0) {
-                // historyStore.createHistory({ items: value })
+                // historyStore.createHistory({ value })
             }
             balanceApi.updateBalance({ value })
 
