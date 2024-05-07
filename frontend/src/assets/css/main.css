@@ -1,0 +1,12 @@
+:root {
+    --palette-gray: rgb(87, 85, 85);
+    --palette-orange: rgb(245, 124, 11);
+    --palette-green: rgb(20, 155, 17);
+    --palette-red: rgb(197, 19, 19);
+    --palette-light-gray: rgb(217, 217, 217);
+}
+
+html {
+    height: 100vh;
+    width: 100vw;
+}

@@ -11,18 +11,22 @@
 - [Rationale](#rationale)
 - [Purpose](#purpose)
 - [System Details](#system-details)
+  - [Diagrams](#diagrams)
+  - [Mockups](#mockups)
 - [How it works](#how-it-works)
 <!-- - [Installation](#installation) -->
 
-### Rationale
+## Rationale
 
 This project aims to cover and review knowledge about Django, Git and Vue. It should also serve as a challenge, so that we can broaden and consolidate our skills.
 
-### Purpose
+## Purpose
 
 WIP
 
-### System details
+## System details
+
+### Diagrams:
 
 <div align="center">
 <h4>Figure 1: Use Case Diagram</h4>
@@ -32,14 +36,40 @@ WIP
 
 <h4>Figure 2: Class Diagram</h4>
 <img src="docs/class_diagram.jpg" alt="Class Diagram">
+</div>
 
-<br>
+### Mockups:
 
+<div align="center">
 <h4>Figure 3: Color Palette</h4>
 <img src="docs/color_palette.png" alt="Color Palette" width=512px>
 
+<br>
+
+<h4>Figura 4: Home page</h4>
+<img src="docs/mockups/home.png" alt="Home page" width=512px>
+
+<br>
+
+<h4>Figura 5: History Page</h4>
+<img src="docs/mockups/history.png" alt="History Page" width=512px>
+
+<br>
+
+<h4>Figura 6: Sign-up page</h4>
+<img src="docs/mockups/signup.png" alt="Sign-up page" width=512px>
+
+<br>
+
+<h4>Figura 7: Sign-in page</h4>
+<img src="docs/mockups/signin.png" alt="Sign-in page" width=512px>
+
+<br>
+
+<h4>Figuras 8: System Components (Navigation sidebar and Items purchase)</h4>
+<img src="docs/mockups/components.png" alt="Componentes do Sistema" height=448>
 </div>
 
-### How it works
+## How it works
 
 <!-- ### Installation -->

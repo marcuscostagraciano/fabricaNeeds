@@ -4,14 +4,7 @@ import { useHistoryStore } from '@/stores/historyStore';
 import { useBalanceStore } from '@/stores/balanceStore';
 
 const historyStore = useHistoryStore()
-
-const balanceStore = useBalanceStore()
-balanceStore.getBalance()
-const form_balance = ref()
-const form_data_balance = reactive({
-    id: 0,
-    value: 0,
-})
+historyStore.getHistory()
 
 </script>
 
@@ -27,9 +20,14 @@ const form_data_balance = reactive({
             </thead>
             <tbody v-for="info in historyStore.formattedHistory" class="historyBody">
                 <tr>
-                    <td class="infoDate"><p>{{ info.datetime.day }}/{{ info.datetime.month }}</p><p>{{ info.datetime.hour }}:{{ info.datetime.minutes }}</p></td>
+                    <td class="infoDate">
+                        <p>{{ info.datetime.day }}/{{ info.datetime.month }}</p>
+                        <p>{{ info.datetime.hour }}:{{ info.datetime.minutes }}</p>
+                    </td>
                     <td class="infoDesc">{{ info.justification }}</td>
-                    <td :class="info.user > 0 ? 'text-green text-center' : 'text-red text-center'">R$ {{ info.user.toFixed(2) }}</td>
+                    <td :class="info.value > 0 ? 'text-green text-center' : 'text-red text-center'">R$ {{
+                Math.abs(info.value).toFixed(2) }}
+                    </td>
                 </tr>
             </tbody>
         </table>
@@ -42,7 +40,8 @@ const form_data_balance = reactive({
     display: flex;
     justify-content: center;
 }
-.infoList{
+
+.infoList {
     min-width: 80%;
     border: 1px solid grey;
     border-radius: 20px;
@@ -50,22 +49,22 @@ const form_data_balance = reactive({
     padding: 0.5% 0%;
 }
 
-.historyHead{
+.historyHead {
     align-items: center;
     text-align: center;
 }
 
-.historyHead th{
+.historyHead th {
     padding: 0% 1%;
     border-bottom: 1px solid grey;
 }
 
-.historyBody{
+.historyBody {
     justify-content: space-between;
     align-items: center;
 }
 
-.infoValue{
+.infoValue {
     text-align: center;
 }
 

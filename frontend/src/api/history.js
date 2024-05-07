@@ -11,4 +11,8 @@ export default class HistoryApi {
         const { data } = await axios.get(`/history/`, config)
         return data
     }
+    async createHistory(history_info) {
+        const { data } = await axios.post(`/history/`, history_info, config)
+        return data
+    }
 }

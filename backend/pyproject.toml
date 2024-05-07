@@ -5,6 +5,8 @@ description = "Default template for PDM package"
 authors = [
     {name = "Gianluca Starke", email = "gianlucastarke@gmail.com"},
     {name = "Marcus Costa Graciano", email = "marcusviniciusgraciano04@gmail.com"},
+    {name = "Pietro Flemming", email = "pietroflemming@gmail.com"},
+    {name = "João Vitor Coêlho", email = "joao.vitor-coelho@hotmail.com"},
 ]
 dependencies = [
     "django>=5.0.4",

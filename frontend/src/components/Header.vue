@@ -21,7 +21,7 @@
 
 <style scoped>
 #site-header {
-    background-color: #575555;
+    background-color: var(--palette-gray);
     color: #fff;
 
     display: flex;
@@ -33,6 +33,6 @@
 }
 
 #logout-btn {
-    background-color: #f57c0b;
+    background-color: var(--palette-orange);
 }
 </style>
