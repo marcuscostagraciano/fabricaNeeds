@@ -1,4 +1,10 @@
 <script setup>
+import { ref } from 'vue';
+
+const username = ref('')
+username.value = (new RegExp('(?:^|; )username=([^;]*)').exec(document.cookie)) ? (new RegExp('(?:^|; )username=([^;]*)').exec(document.cookie)[1]) : null;
+
+
 </script>
 
 <template>
@@ -12,7 +18,10 @@
             </v-col>
             <v-col>
                 <!-- Placeholder for user operations (login and logout) -->
-                <v-app-bar-nav-icon icon="mdi-account" />
+                <!-- <v-app-bar-nav-icon icon="mdi-account" /> -->
+                <div v-if="username">
+                    {{ username }}
+                </div>
             </v-col>
         </v-row>
 
