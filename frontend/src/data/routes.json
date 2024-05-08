@@ -33,5 +33,12 @@
         "pt_name": "registrar itens",
         "component": "RegisterItemView",
         "show": true
+    },
+    {
+        "path": "/test",
+        "name": "test",
+        "pt_name": "test",
+        "component": "test",
+        "show": true
     }
 ]
