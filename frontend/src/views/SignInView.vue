@@ -7,10 +7,12 @@ import { useAuthStore } from '@/stores/authStore';
 
 const authStore = useAuthStore()
 
+const showing_password = ref(false)
+
 const form = ref()
 const form_data = reactive({
-    user: 'teste',
-    password: 'senha.123',
+    user: '',
+    password: '',
 })
 
 onMounted(async () => {
@@ -32,7 +34,10 @@ const signIn = async () => {
     <v-form class="form" @submit.prevent="signIn" ref="form">
         <h1 class="text-center mb-5">Login</h1>
         <v-text-field label="Usuário" v-model="form_data.user" type="text" />
-        <v-text-field label="Senha" :rules="passwordLengthRule" v-model="form_data.password" type="password" />
+        <v-text-field label="Senha" :rules="passwordLengthRule" v-model="form_data.password"
+            :type="showing_password ? 'text' : 'password'"
+            :append-inner-icon="showing_password ? 'mdi-eye-closed' : 'mdi-eye'"
+            @click:append-inner="showing_password = !showing_password" />
 
         <div class="form-actions">
             <router-link to="/signup">

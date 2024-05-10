@@ -10,8 +10,10 @@ import { useUserStore } from '@/stores/userStore';
 
 const userStore = useUserStore()
 
-const form = ref()
+const showing_password = ref(false)
 const successful_signup = ref(false)
+
+const form = ref()
 const form_data = reactive({
     username: '',
     email: '',
@@ -49,7 +51,10 @@ async function createUser() {
         <v-text-field label="Nome de Usuário" :rules="[requiredRule]" v-model="form_data.username" type="text"
             messages="Este nome é vísivel para outros usuários." hint="Use o formato de NomeSobrenome." />
         <v-text-field label="E-mail" :rules="emailRule" v-model="form_data.email" type="email" />
-        <v-text-field label="Senha" :rules="passwordLengthRule" v-model="form_data.password" type="password" />
+        <v-text-field label="Senha" :rules="passwordLengthRule" v-model="form_data.password"
+            :type="showing_password ? 'text' : 'password'"
+            :append-inner-icon="showing_password ? 'mdi-eye-closed' : 'mdi-eye'"
+            @click:append-inner="showing_password = !showing_password" />
         <v-text-field label="Confirmação de senha"
             :rules="[passwordConfirmationRule[1](form_data.password_confirmation, form_data.password)]"
             v-model="form_data.password_confirmation" type="password" />
