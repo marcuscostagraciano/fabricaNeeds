@@ -32,10 +32,13 @@ const buyItems = async (controlVar) => {
     <v-dialog activator="btn" max-width="340" persistent>
         <template v-slot:default="{ isActive }">
             <v-card class="card">
+                <!-- PRECISA FICAR BONITO :) -->
                 <v-card v-for="item in items" :key="item.id" class="items">
-                    {{ item.name }}
-                    <v-text-field name="Preço" label="Preço" :id="item.id" v-model="prices[item.id]"
-                        type="number">R$</v-text-field>
+                    <div class="item">
+                        {{ item.name }}
+                        <v-text-field name="Preço" label="Preço (R$)" :id="item.id" v-model="prices[item.id]"
+                            type="number" />
+                    </div>
                 </v-card>
 
                 <template v-slot:actions>
@@ -50,7 +53,13 @@ const buyItems = async (controlVar) => {
 <style scoped>
 @import '@/assets/css/addcards.css';
 
+.items {
+    display: flex;
+    flex-flow: column;
+    justify-content: space-around;
+}
+
 .item {
-    text-align: center;
+    padding: 5%;
 }
 </style>
