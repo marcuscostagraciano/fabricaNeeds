@@ -4,7 +4,6 @@ import { ref } from 'vue';
 const username = ref('')
 username.value = (new RegExp('(?:^|; )username=([^;]*)').exec(document.cookie)) ? (new RegExp('(?:^|; )username=([^;]*)').exec(document.cookie)[1]) : null;
 
-
 </script>
 
 <template>
@@ -19,11 +18,12 @@ username.value = (new RegExp('(?:^|; )username=([^;]*)').exec(document.cookie)) 
                     <p v-else>fabricaNeeds</p>
                 </v-app-bar-title>
             </v-col>
-            <v-col>
-                <!-- Placeholder for user operations (login and logout) -->
-                <!-- <v-app-bar-nav-icon icon="mdi-account" /> -->
+            <v-col class="auth-options">
                 <div v-if="username">
                     {{ username }}
+                    <br>
+                    <router-link to="/signin" id="logout-btn" @click="username = ''"
+                        class="rounded">Logout</router-link>
                 </div>
             </v-col>
         </v-row>
@@ -61,5 +61,8 @@ username.value = (new RegExp('(?:^|; )username=([^;]*)').exec(document.cookie)) 
 
 #logout-btn {
     background-color: var(--palette-orange);
+    text-decoration: none;
+    color: #fff;
+    padding: 0rem 0.8rem;
 }
 </style>
