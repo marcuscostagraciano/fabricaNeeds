@@ -13,7 +13,10 @@ username.value = (new RegExp('(?:^|; )username=([^;]*)').exec(document.cookie)) 
                 <v-app-bar-nav-icon v-if="username" icon="mdi-menu" @click="$emit('openSideBar')" />
             </v-col>
             <v-col id="site-title">
-                <v-app-bar-title><router-link to="/">fabricaNeeds</router-link></v-app-bar-title>
+                <v-app-bar-title>
+                    <router-link v-if="username" to="/">fabricaNeeds</router-link>
+                    <p v-else>fabricaNeeds</p>
+                </v-app-bar-title>
             </v-col>
             <v-col class="auth-options">
                 <div v-if="username">
@@ -41,7 +44,7 @@ username.value = (new RegExp('(?:^|; )username=([^;]*)').exec(document.cookie)) 
     align-self: center;
 }
 
-a {
+#site-title a {
     color: #fff;
     text-decoration: none;
     cursor: url('@/assets/icons/home-white.svg'), pointer;
