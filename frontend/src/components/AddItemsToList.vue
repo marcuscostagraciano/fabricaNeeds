@@ -59,6 +59,33 @@ const toggleListedItems = async (controlVar) => {
 @import '@/assets/css/addcards.css';
 
 .item {
+    display: grid;
+    /* am i the only one who reads "for real" ? */
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-areas:
+        "item-name action-button";
     text-align: center;
+}
+
+.items {
+    display: flex;
+    flex-direction: column;
+}
+
+.item {
+    display: grid;
+    /* am i the only one who reads "for real" ? */
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-areas:
+        "item-name action-button";
+    text-align: center;
+}
+
+td:nth-child(1) {
+    grid-area: "item-name";
+}
+
+td:nth-child(2) {
+    grid-area: "action-button";
 }
 </style>
