@@ -33,13 +33,16 @@ const toggleListedItems = async (controlVar) => {
         <template v-slot:default="{ isActive }">
             <v-card prepend-icon="mdi-invoice-list-outline" title="Adicionar itens a lista" class="card">
                 <table>
-                    <tr v-for="item in itemStore.inactiveItems" :key="item.id" class="item">
-                        <td>{{ item.name }}</td>
-                        <td>
-                            <v-icon v-if="!isInList(item)" @click="addToList(item)">mdi-cart-plus</v-icon>
-                            <v-icon v-else @click="removeFromList(item)">mdi-cart-remove</v-icon>
-                        </td>
-                    </tr>
+                    <div v-if="itemStore.inactiveItems.length" class="items">
+                        <tr v-for="item in itemStore.inactiveItems" :key="item.id" class="item">
+                            <td>{{ item.name }}</td>
+                            <td>
+                                <v-icon v-if="!isInList(item)" @click="addToList(item)">mdi-cart-plus</v-icon>
+                                <v-icon v-else @click="removeFromList(item)">mdi-cart-remove</v-icon>
+                            </td>
+                        </tr>
+                    </div>
+                    <div v-else class="text-center">Sem itens à serem adicionados</div>
                 </table>
 
                 <template v-slot:actions>
