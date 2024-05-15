@@ -11,13 +11,15 @@ from rest_framework_simplejwt.views import (
 from FabricaNeeds.views import (
     BalanceViewSet,
     ItemViewSet,
-    HistoryViewSet
+    HistoryViewSet,
+    UserViewSet,
 )
 
 router = DefaultRouter()
 router.register(r"balance", BalanceViewSet)
 router.register(r"items", ItemViewSet)
 router.register(r"history", HistoryViewSet)
+router.register(r"user", UserViewSet)
 
 urlpatterns = [
     path("admin/", admin.site.urls),
