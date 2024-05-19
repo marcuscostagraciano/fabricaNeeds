@@ -31,13 +31,16 @@ const isFormValid = computed(() => {
 async function createUser() {
     successful_signup.value = await userStore.createUser(form_data)
 
-    // Reset form fields
-    form.value.reset();
+    // Only resets the form if the sign-up is successful
+    if (successful_signup.value) {
+        // Reset form fields
+        form.value.reset();
 
-    // Clear input values
-    form_data.username = '';
-    form_data.password = '';
-    form_data.password_confirmation = '';
+        // Clear input values
+        form_data.username = '';
+        form_data.password = '';
+        form_data.password_confirmation = '';
+    }
 }
 </script>
 
