@@ -9,7 +9,6 @@ export const useUserStore = defineStore('user', () => {
     async function createUser(data) {
         return await usersApi.createUser({
             "name": data.name,
-            "email": data.email,
             "password": data.password,
             "balance": null,
         })
