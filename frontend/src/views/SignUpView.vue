@@ -29,8 +29,7 @@ const isFormValid = computed(() => {
 })
 
 async function createUser() {
-    const resp = await userStore.createUser(form_data)
-    successful_signup.value = resp
+    successful_signup.value = await userStore.createUser(form_data)
 
     // Reset form fields
     form.value.reset();

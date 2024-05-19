@@ -6,12 +6,20 @@ import UsersApi from '@/api/users';
 export const useUserStore = defineStore('user', () => {
     const usersApi = new UsersApi()
 
-    async function createUser(data) {
-        return await usersApi.createUser({
-            "name": data.name,
-            "password": data.password,
-            "balance": null,
-        })
+    const createUser = async (userData) => {
+        try {
+            await usersApi.createUser({
+                "username": userData.username,
+                "password": userData.password,
+            })
+            alert('Cadastro realizado com sucesso!')
+        }
+        catch (err) {
+            alert("Algo deu errado! Por favor revise e reinsira suas informações!")
+            console.log(err);
+            return false
+        }
+        return true
     }
 
     return { createUser }
